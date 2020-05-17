@@ -13,14 +13,17 @@
     "rax": "^1.1.0",
     "rax-app": "^2.0.0",
     "rax-document": "^0.1.0",
+    "rax-icon": "^1.3.1",
     "rax-image": "^2.0.0",
     "rax-link": "^1.0.1",
+    "rax-scrollview": "^3.2.0",
     "rax-text": "^1.0.0",
     "rax-view": "^1.0.0"
   },
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
     "@rax-types/rax": "^1.0.6",
+    "@types/classnames": "^2.2.10",
     "babel-eslint": "^10.0.3",
     "build-plugin-rax-app": "^4.0.0",
     "build-plugin-rax-multi-pages": "^2.0.0",
