@@ -14,7 +14,7 @@ type ListItemType = 'default' | 'box';
 
 /**
  * @interface iconUrl: icon 地址
- * @interface title: Box 标题
+ * @interface title: Item 标题
  * @interface itemSum: 事件总数
  */
 export interface ListItemProps {
@@ -36,20 +36,28 @@ const ListItem: Rax.FC<ListItemProps> = (props) => {
 
   // 处理样式
   const listItemClass = classnames({
-    'list-item': type === 'box',
-    'list-item-focused': type === 'box' && isFocus
+    'list-item': type === 'default',
+    'list-item-focused': type === 'default' && isFocus,
+    'list-item-box': type === 'box',
+    'list-item-box-focused': type === 'box' && isFocus
   });
   const listItemIconClass = classnames({
-    'list-item-icon': type === 'box',
-    'list-item-icon-focused': type === 'box' && isFocus
+    'list-item-icon': type === 'default',
+    'list-item-icon-focused': type === 'default' && isFocus,
+    'list-item-box-icon': type === 'box',
+    'list-item-box-icon-focused': type === 'box' && isFocus
   });
   const listItemItemSumClass = classnames({
-    'list-item-itemSum': type === 'box',
-    'list-item-itemSum-focused': type === 'box' && isFocus
+    'list-item-itemSum': type === 'default',
+    'list-item-itemSum-focused': type === 'default' && isFocus,
+    'list-item-box-itemSum': type === 'box',
+    'list-item-box-itemSum-focused': type === 'box' && isFocus
   });
   const listItemTitleClass = classnames({
-    'list-item-title': type === 'box',
-    'list-item-title-focused': type === 'box' && isFocus
+    'list-item-title': type === 'default',
+    'list-item-title-focused': type === 'default' && isFocus,
+    'list-item-box-title': type === 'box',
+    'list-item-box-title-focused': type === 'box' && isFocus
   });
 
   return (
@@ -60,8 +68,8 @@ const ListItem: Rax.FC<ListItemProps> = (props) => {
         }}
         className={listItemIconClass}
       />
-      <Text className={listItemItemSumClass}>{itemSum}</Text>
       <Text className={listItemTitleClass}>{title}</Text>
+      <Text className={listItemItemSumClass}>{itemSum}</Text>
     </View>
   );
 };

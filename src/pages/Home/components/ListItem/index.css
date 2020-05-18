@@ -7,6 +7,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  height: 100rpx;
+  margin: 0 37.5rpx;
+}
+
+.list-item-box {
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 300rpx;
   height: 200rpx;
   margin: 37.5rpx 0;
@@ -14,11 +23,11 @@
   background-color: #ffffff;
 }
 
-.list-item-focused {
+.list-item-box-focused {
   background-color: #fd8208;
 }
 
-.list-item-icon {
+.list-item-box-icon {
   width: 100rpx;
   height: 100rpx;
   margin: 20rpx;
@@ -26,22 +35,22 @@
   background-color: #fd8208;
 }
 
-.list-item-icon-focused {
+.list-item-box-icon-focused {
   background-color: #ffffff;
 }
 
-.list-item-itemSum {
+.list-item-box-itemSum {
   margin: 20rpx;
   color: #333333;
   font-size: 60rpx;
   font-weight: bolder;
 }
 
-.list-item-itemSum-focused {
+.list-item-box-itemSum-focused {
   color: #ffffff;
 }
 
-.list-item-title {
+.list-item-box-title {
   position: absolute;
   left: 35rpx;
   bottom: 20rpx;
@@ -50,6 +59,6 @@
   font-weight: bold;
 }
 
-.list-item-title-focused {
+.list-item-box-title-focused {
   color: #ffffff;
 }

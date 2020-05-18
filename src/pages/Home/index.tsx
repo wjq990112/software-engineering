@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <ScrollView className="home">
       <Class list={classList} />
-      <List />
+      <List list={classList} />
     </ScrollView>
   );
 }
