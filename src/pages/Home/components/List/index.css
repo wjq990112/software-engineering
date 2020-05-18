@@ -1,0 +1,17 @@
+/**
+ * @file 列表组件样式
+ * @author 炽翎
+ */
+.list {
+  color: #333333;
+  text-align: center;
+  font-size: 60rpx;
+  font-weight: bolder;
+}
+
+.list-wrapper {
+  min-height: 100rpx;
+  margin: 25rpx;
+  border-radius: 15px;
+  background-color: #ffffff;
+}

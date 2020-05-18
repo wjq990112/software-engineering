@@ -5,7 +5,7 @@
 import { createElement } from 'rax';
 import View from 'rax-view';
 
-import Box, { BoxProps } from '../../../../components/Box';
+import ListItem, { ListItemProps } from '../ListItem';
 
 import './index.css';
 
@@ -13,7 +13,7 @@ import './index.css';
  * @interface list: 分类列表
  */
 interface ClassProps {
-  list?: Array<BoxProps>;
+  list?: Array<ListItemProps>;
 }
 
 const Class: Rax.FC<ClassProps> = (props) => {
@@ -22,8 +22,9 @@ const Class: Rax.FC<ClassProps> = (props) => {
   return (
     <View className="class">
       {list.map((item) => (
-        <Box
+        <ListItem
           key={item.title}
+          type="box"
           iconUrl={item.iconUrl}
           title={item.title}
           itemSum={item.itemSum}
@@ -34,32 +35,7 @@ const Class: Rax.FC<ClassProps> = (props) => {
 };
 
 Class.defaultProps = {
-  list: [
-    {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
-      title: '今天',
-      itemSum: 0
-    },
-    {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
-      title: '计划',
-      itemSum: 0
-    },
-    {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
-      title: '全部',
-      itemSum: 0
-    },
-    {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
-      title: '旗标',
-      itemSum: 0
-    }
-  ]
+  list: []
 };
 
 export default Class;
