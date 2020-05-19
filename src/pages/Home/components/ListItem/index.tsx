@@ -19,6 +19,7 @@ type ListItemType = 'default' | 'box';
  */
 export interface ListItemProps {
   type?: ListItemType;
+  className?: string;
   iconUrl: string;
   title: string;
   itemSum?: number;
@@ -27,7 +28,7 @@ export interface ListItemProps {
 const ListItem: Rax.FC<ListItemProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const { type, iconUrl, title, itemSum } = props;
+  const { type, className, iconUrl, title, itemSum } = props;
 
   // 点击事件
   const handleBoxClick = () => {
@@ -35,7 +36,7 @@ const ListItem: Rax.FC<ListItemProps> = (props) => {
   };
 
   // 处理样式
-  const listItemClass = classnames({
+  const listItemClass = classnames(className, {
     'list-item': type === 'default',
     'list-item-focused': type === 'default' && isFocus,
     'list-item-box': type === 'box',
@@ -76,6 +77,7 @@ const ListItem: Rax.FC<ListItemProps> = (props) => {
 
 ListItem.defaultProps = {
   type: 'default',
+  className: '',
   itemSum: 0
 };
 

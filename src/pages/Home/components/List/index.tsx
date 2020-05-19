@@ -5,6 +5,7 @@
 import { createElement } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
+import classnames from 'classnames';
 
 import ListItem, { ListItemProps } from '../ListItem';
 
@@ -20,18 +21,26 @@ interface ListProps {
 const List: Rax.FC<ListProps> = (props) => {
   const { list } = props;
 
+  const renderListItem = (item: ListItemProps, index: number) => {
+    const listItemClass = classnames({
+      'list-item-border': index < list.length
+    });
+    return (
+      <ListItem
+        key={item.title}
+        className={listItemClass}
+        iconUrl={item.iconUrl}
+        title={item.title}
+        itemSum={item.itemSum}
+      />
+    );
+  };
+
   return (
     <View className="list">
       <Text>我的列表</Text>
       <View className="list-wrapper">
-        {list.map((item) => (
-          <ListItem
-            key={item.title}
-            iconUrl={item.iconUrl}
-            title={item.title}
-            itemSum={item.itemSum}
-          />
-        ))}
+        {list.map((item, index) => renderListItem(item, index))}
       </View>
     </View>
   );

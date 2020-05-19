@@ -15,3 +15,7 @@
   border-radius: 15px;
   background-color: #ffffff;
 }
+
+.list-item-border {
+  border-bottom: 1px solid #dcdcdc;
+}

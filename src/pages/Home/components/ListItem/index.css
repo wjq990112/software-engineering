@@ -7,8 +7,33 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  height: 100rpx;
+  height: 124rpx;
   margin: 0 37.5rpx;
+  padding: 12rpx 0;
+}
+
+.list-item-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+  border-radius: 40rpx;
+  background-color: #fd8208;
+}
+
+.list-item-itemSum {
+  margin: 20rpx;
+  color: #77777b;
+  font-size: 48rpx;
+  line-height: 60rpx;
+}
+
+.list-item-title {
+  position: absolute;
+  top: 38rpx;
+  left: 112rpx;
+  color: #333333;
+  font-size: 36rpx;
+  line-height: 48rpx;
 }
 
 .list-item-box {
