@@ -8,8 +8,15 @@
   justify-content: space-between;
   align-items: flex-start;
   height: 124rpx;
-  margin: 0 37.5rpx;
-  padding: 12rpx 0;
+  padding: 12rpx 37.5rpx;
+}
+
+.list-item-focused {
+  background-color: #fd8208;
+}
+
+.list-item {
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .list-item-icon {
@@ -20,6 +27,10 @@
   background-color: #fd8208;
 }
 
+.list-item-icon-focused {
+  background-color: #ffffff;
+}
+
 .list-item-itemSum {
   margin: 20rpx;
   color: #77777b;
@@ -27,13 +38,21 @@
   line-height: 60rpx;
 }
 
+.list-item-itemSum-focused {
+  color: #ffffff;
+}
+
 .list-item-title {
   position: absolute;
   top: 38rpx;
-  left: 112rpx;
+  left: 149.5rpx;
   color: #333333;
   font-size: 36rpx;
   line-height: 48rpx;
+}
+
+.list-item-title-focused {
+  color: #ffffff;
 }
 
 .list-item-box {

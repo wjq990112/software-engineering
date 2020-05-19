@@ -17,7 +17,7 @@ type ListItemType = 'default' | 'box';
  * @interface title: Item 标题
  * @interface itemSum: 事件总数
  */
-export interface ListItemProps {
+export interface IListItemProps {
   type?: ListItemType;
   className?: string;
   iconUrl: string;
@@ -25,7 +25,7 @@ export interface ListItemProps {
   itemSum?: number;
 }
 
-const ListItem: Rax.FC<ListItemProps> = (props) => {
+const ListItem: Rax.FC<IListItemProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const { type, className, iconUrl, title, itemSum } = props;

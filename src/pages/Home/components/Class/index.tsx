@@ -5,18 +5,18 @@
 import { createElement } from 'rax';
 import View from 'rax-view';
 
-import ListItem, { ListItemProps } from '../ListItem';
+import ListItem, { IListItemProps } from '../ListItem';
 
 import './index.css';
 
 /**
  * @interface list: 分类列表
  */
-interface ClassProps {
-  list?: Array<ListItemProps>;
+interface IClassProps {
+  list?: Array<IListItemProps>;
 }
 
-const Class: Rax.FC<ClassProps> = (props) => {
+const Class: Rax.FC<IClassProps> = (props) => {
   const { list } = props;
 
   return (

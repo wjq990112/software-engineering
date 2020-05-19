@@ -10,12 +10,9 @@
 }
 
 .list-wrapper {
+  overflow: hidden;
   min-height: 100rpx;
   margin: 25rpx;
   border-radius: 15px;
   background-color: #ffffff;
-}
-
-.list-item-border {
-  border-bottom: 1px solid #dcdcdc;
 }
