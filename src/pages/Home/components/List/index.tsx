@@ -5,7 +5,6 @@
 import { createElement } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
-import classnames from 'classnames';
 
 import ListItem, { IListItemProps } from '../ListItem';
 
@@ -21,19 +20,18 @@ interface IListProps {
 const List: Rax.FC<IListProps> = (props) => {
   const { list } = props;
 
+  const hasBorderSum = list.length - 1;
+
   return (
     <View className="list">
-      <Text>我的列表</Text>
+      <Text className="list-title">我的列表</Text>
       <View className="list-wrapper">
         {list.map((item, index) => {
-          // 最后一项不添加下边框
-          const listItemClass = classnames({
-            'list-item-border': index < list.length - 1
-          });
+          const hasBorder = index < hasBorderSum;
           return (
             <ListItem
               key={item.title}
-              className={listItemClass}
+              style={{ borderBottom: hasBorder && '1px solid #dcdcdc' }}
               iconUrl={item.iconUrl}
               title={item.title}
               itemSum={item.itemSum}

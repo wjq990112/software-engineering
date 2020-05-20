@@ -13,7 +13,7 @@ function Document() {
         <title>炽翎TODO</title>
         <Style />
       </head>
-      <body>
+      <body style={{ margin: 0 }}>
         {/* root container */}
         <Root />
         <Script />

@@ -2,7 +2,7 @@
  * @file 列表项组件
  * @author 炽翎
  */
-import { createElement, useState } from 'rax';
+import { createElement, useState, CSSProperties } from 'rax';
 import View from 'rax-view';
 import Icon from 'rax-icon';
 import Text from 'rax-text';
@@ -18,8 +18,8 @@ type ListItemType = 'default' | 'box';
  * @interface itemSum: 事件总数
  */
 export interface IListItemProps {
+  style?: CSSProperties;
   type?: ListItemType;
-  className?: string;
   iconUrl: string;
   title: string;
   itemSum?: number;
@@ -28,7 +28,7 @@ export interface IListItemProps {
 const ListItem: Rax.FC<IListItemProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const { type, className, iconUrl, title, itemSum } = props;
+  const { style, type, iconUrl, title, itemSum } = props;
 
   // 点击事件
   const handleBoxClick = () => {
@@ -36,7 +36,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   };
 
   // 处理样式
-  const listItemClass = classnames(className, {
+  const listItemClass = classnames({
     'list-item': type === 'default',
     'list-item-focused': type === 'default' && isFocus,
     'list-item-box': type === 'box',
@@ -62,7 +62,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   });
 
   return (
-    <View className={listItemClass} onClick={handleBoxClick}>
+    <View className={listItemClass} style={style} onClick={handleBoxClick}>
       <Icon
         source={{
           uri: iconUrl
@@ -77,7 +77,6 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
 ListItem.defaultProps = {
   type: 'default',
-  className: '',
   itemSum: 0
 };
 

@@ -2,7 +2,7 @@
  * @file 分类组件
  * @author 炽翎
  */
-import { createElement } from 'rax';
+import { createElement, useEffect } from 'rax';
 import View from 'rax-view';
 
 import ListItem, { IListItemProps } from '../ListItem';

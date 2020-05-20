@@ -3,16 +3,19 @@
  * @author 炽翎
  */
 .list {
-  color: #333333;
   text-align: center;
-  font-size: 60rpx;
+}
+
+.list-title {
+  color: #333333;
+  font-size: 36rpx;
   font-weight: bolder;
 }
 
 .list-wrapper {
   overflow: hidden;
   min-height: 100rpx;
-  margin: 25rpx;
+  margin: 37.5rpx;
   border-radius: 15px;
   background-color: #ffffff;
 }
