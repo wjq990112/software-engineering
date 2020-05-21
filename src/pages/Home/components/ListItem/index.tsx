@@ -23,16 +23,18 @@ export interface IListItemProps {
   iconUrl: string;
   title: string;
   itemSum?: number;
+  onClick?: (e: Rax.MouseEvent) => undefined;
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const { style, type, iconUrl, title, itemSum } = props;
+  const { style, type, iconUrl, title, itemSum, onClick } = props;
 
   // 点击事件
-  const handleBoxClick = () => {
+  const handleBoxClick = (e: Rax.MouseEvent) => {
     setIsFocus(true);
+    onClick && onClick(e);
   };
 
   // 处理样式

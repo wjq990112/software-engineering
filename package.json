@@ -4,7 +4,8 @@
   "scripts": {
     "build": "build-scripts build",
     "start": "build-scripts start",
-    "lint": "eslint --ext .js --ext .jsx ./"
+    "lint": "eslint --ext .js --ext .jsx ./",
+    "test": "jest"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -22,9 +23,13 @@
   },
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
+    "@babel/preset-env": "^7.9.6",
     "@rax-types/rax": "^1.0.6",
     "@types/classnames": "^2.2.10",
+    "@types/jest": "^25.2.3",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^26.0.1",
+    "babel-preset-rax": "^1.0.0-beta.0",
     "build-plugin-rax-app": "^4.0.0",
     "build-plugin-rax-multi-pages": "^2.0.0",
     "commitizen": "^4.1.2",
@@ -33,7 +38,12 @@
     "eslint-config-rax": "^0.0.3",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-react": "^7.18.0",
+    "jest": "^26.0.1",
+    "rax-test-renderer": "^1.0.0",
     "typescript": "^3.7.5"
+  },
+  "jest": {
+    "collectCoverage": true
   },
   "config": {
     "commitizen": {
