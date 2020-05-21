@@ -2,7 +2,7 @@
  * @file 列表项组件
  * @author 炽翎
  */
-import { createElement, useState, CSSProperties } from 'rax';
+import { createElement, useState } from 'rax';
 import View from 'rax-view';
 import Icon from 'rax-icon';
 import Text from 'rax-text';
@@ -18,7 +18,7 @@ type ListItemType = 'default' | 'box';
  * @interface itemSum: 事件总数
  */
 export interface IListItemProps {
-  style?: CSSProperties;
+  style?: Rax.CSSProperties;
   type?: ListItemType;
   iconUrl: string;
   title: string;

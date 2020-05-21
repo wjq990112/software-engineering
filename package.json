@@ -5,7 +5,7 @@
     "build": "build-scripts build",
     "start": "build-scripts start",
     "lint": "eslint --ext .js --ext .jsx ./",
-    "test": "jest"
+    "test": "build-scripts test"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
     "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
     "@rax-types/rax": "^1.0.6",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.3",
