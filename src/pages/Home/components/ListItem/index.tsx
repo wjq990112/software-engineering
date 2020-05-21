@@ -23,7 +23,7 @@ export interface IListItemProps {
   iconUrl: string;
   title: string;
   itemSum?: number;
-  onClick?: (e: Rax.MouseEvent) => undefined;
+  onClick?: (e: Rax.MouseEvent) => any;
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
