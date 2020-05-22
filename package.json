@@ -5,7 +5,7 @@
     "build": "build-scripts build",
     "start": "build-scripts start",
     "lint": "eslint --ext .js --ext .jsx ./",
-    "test": "build-scripts test"
+    "test": "jest"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -23,14 +23,19 @@
   },
   "devDependencies": {
     "@alib/build-scripts": "^0.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@babel/preset-env": "^7.9.6",
+    "@babel/preset-flow": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@rax-types/rax": "^1.0.6",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.0.1",
-    "babel-preset-rax": "^1.0.0-beta.0",
+    "babel-plugin-transform-jsx-stylesheet": "^0.6.11",
     "build-plugin-rax-app": "^4.0.0",
     "build-plugin-rax-multi-pages": "^2.0.0",
     "commitizen": "^4.1.2",
@@ -44,7 +49,11 @@
     "typescript": "^3.7.5"
   },
   "jest": {
-    "collectCoverage": true
+    "collectCoverage": true,
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "config": {
     "commitizen": {

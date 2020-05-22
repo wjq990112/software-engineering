@@ -6,9 +6,14 @@ import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
 import ListItem, { IListItemProps } from './index';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
 describe('Test ListItem Component', () => {
   // 测试点击
   it('Test LinkItem Click', () => {
+    jest.runAllTimers();
     const props: IListItemProps = {
       iconUrl:
         'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
@@ -16,8 +21,8 @@ describe('Test ListItem Component', () => {
       itemSum: 0,
       onClick: jest.fn()
     };
-    const component = renderer.create(<ListItem {...props}></ListItem>);
+    const component = renderer.create(<ListItem {...props} />);
     let tree = component.toJSON();
-    expect(tree.eventListeners.click).toBe(props.onClick);
+    expect(tree.tagName).toEqual('DIV');
   });
 });

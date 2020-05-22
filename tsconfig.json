@@ -10,11 +10,8 @@
     "alwaysStrict": true,
     "baseUrl": ".",
     "paths": {
-      "rax": [
-        "node_modules/@rax-types/rax"
-      ]    }
+      "rax": ["node_modules/@rax-types/rax"]
+    }
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src/**/*"]
 }
