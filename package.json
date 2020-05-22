@@ -16,6 +16,7 @@
     "rax-icon": "^1.3.1",
     "rax-image": "^2.0.0",
     "rax-link": "^1.0.1",
+    "rax-modal": "^1.5.0",
     "rax-scrollview": "^3.2.0",
     "rax-text": "^1.0.0",
     "rax-view": "^1.0.0",

@@ -2,15 +2,22 @@
  * @file 首页
  * @author 炽翎
  */
-import { createElement, useState, useEffect } from 'rax';
+import { createElement, useEffect, createContext, useReducer } from 'rax';
 import ScrollView from 'rax-scrollview';
 
 import Class from './components/Class';
 import List from './components/List';
 import { GET } from '../../utils/request';
+import { IState } from './store/state';
+import { IAction } from './store/reducer';
 import { IListItemProps } from './components/ListItem';
+import { state as initState, reducer, constants } from './store';
 
 import './index.css';
+
+export const Context = createContext(
+  {} as { state: IState; dispatch: Rax.Dispatch<IAction> }
+);
 
 interface IClassListResponseData {
   code: number;
@@ -29,8 +36,7 @@ interface IMyListResponseData {
 }
 
 export default function Home() {
-  const [classList, setClassList] = useState([]);
-  const [myList, setMyList] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initState);
 
   const getClassList = () => {
     // TODO: 修改URL
@@ -39,7 +45,10 @@ export default function Home() {
     GET({ url })
       .then((res: IClassListResponseData) => {
         if (res.code === 200) {
-          setClassList(res.data.classList);
+          dispatch({
+            type: constants.GET_CLASS_LIST,
+            data: res.data.classList
+          });
         } else {
           console.log(res.message);
         }
@@ -56,7 +65,10 @@ export default function Home() {
     GET({ url })
       .then((res: IMyListResponseData) => {
         if (res.code === 200) {
-          setMyList(res.data.myList);
+          dispatch({
+            type: constants.GET_MY_LIST,
+            data: res.data.myList
+          });
         } else {
           console.log(res.message);
         }
@@ -73,8 +85,10 @@ export default function Home() {
 
   return (
     <ScrollView className="home">
-      <Class list={classList} />
-      <List list={myList} />
+      <Context.Provider value={{ state, dispatch }}>
+        <Class />
+        <List />
+      </Context.Provider>
     </ScrollView>
   );
 }

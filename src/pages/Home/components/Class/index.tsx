@@ -2,26 +2,21 @@
  * @file 分类组件
  * @author 炽翎
  */
-import { createElement, useEffect } from 'rax';
+import { createElement, useContext } from 'rax';
 import View from 'rax-view';
 
-import ListItem, { IListItemProps } from '../ListItem';
+import ListItem from '../ListItem';
+import { Context } from '../../index';
 
 import './index.css';
 
-/**
- * @interface list: 分类列表
- */
-interface IClassProps {
-  list?: Array<IListItemProps>;
-}
-
-const Class: Rax.FC<IClassProps> = (props) => {
-  const { list } = props;
+const Class: Rax.FC = () => {
+  const { state } = useContext(Context);
+  const { classList } = state;
 
   return (
     <View className="class">
-      {list.map((item) => (
+      {classList.map((item) => (
         <ListItem
           key={item.title}
           type="box"
@@ -32,10 +27,6 @@ const Class: Rax.FC<IClassProps> = (props) => {
       ))}
     </View>
   );
-};
-
-Class.defaultProps = {
-  list: []
 };
 
 export default Class;

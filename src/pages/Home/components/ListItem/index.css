@@ -12,7 +12,7 @@
 }
 
 .list-item-focused {
-  background-color: #fd8208;
+  background-color: #00b4ff;
 }
 
 .list-item-icon {
@@ -20,7 +20,7 @@
   height: 80rpx;
   margin: 10rpx;
   border-radius: 40rpx;
-  background-color: #fd8208;
+  background-color: #00b4ff;
 }
 
 .list-item-icon-focused {
@@ -65,7 +65,7 @@
 }
 
 .list-item-box-focused {
-  background-color: #fd8208;
+  background-color: #00b4ff;
 }
 
 .list-item-box-icon {
@@ -73,7 +73,7 @@
   height: 100rpx;
   margin: 20rpx;
   border-radius: 50rpx;
-  background-color: #fd8208;
+  background-color: #00b4ff;
 }
 
 .list-item-box-icon-focused {
