@@ -31,6 +31,7 @@
   margin: 20rpx;
   color: #77777b;
   font-size: 48rpx;
+  font-weight: bold;
   line-height: 60rpx;
 }
 
@@ -83,7 +84,7 @@
   margin: 20rpx;
   color: #333333;
   font-size: 60rpx;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .list-item-box-itemSum-focused {
@@ -92,11 +93,10 @@
 
 .list-item-box-title {
   position: absolute;
-  left: 35rpx;
+  left: 32.5rpx;
   bottom: 20rpx;
   color: #77777b;
   font-size: 36rpx;
-  font-weight: bold;
 }
 
 .list-item-box-title-focused {

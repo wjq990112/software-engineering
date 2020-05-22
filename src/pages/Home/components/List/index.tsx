@@ -28,10 +28,14 @@ const List: Rax.FC<IListProps> = (props) => {
       <View className="list-wrapper">
         {list.map((item, index) => {
           const hasBorder = index < hasBorderSum;
+          const style = hasBorder && {
+            borderBottomWidth: '1px',
+            borderBottomColor: '#dcdcdc'
+          };
           return (
             <ListItem
               key={item.title}
-              style={{ borderBottom: hasBorder && '1px solid #dcdcdc' }}
+              style={style}
               iconUrl={item.iconUrl}
               title={item.title}
               itemSum={item.itemSum}
