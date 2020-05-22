@@ -1,5 +1,6 @@
 /**
  * @file 网络请求方法
+ * @author 炽翎
  */
 import request from 'universal-request';
 import { ResponseData, AsObject, DATA_TYPE } from 'universal-request/lib/types';
