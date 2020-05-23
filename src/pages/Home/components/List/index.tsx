@@ -43,17 +43,26 @@ const List: Rax.FC = () => {
             borderBottomWidth: '1px',
             borderBottomColor: '#dcdcdc'
           };
+          const btnStyle = hasBorder && {
+            borderBottomWidth: '1px',
+            borderBottomColor: '#dcdcdc'
+          };
           return (
-            <ListItem
-              key={item.title}
-              style={style}
-              deleting={state.listDeleting}
-              iconUrl={item.iconUrl}
-              title={item.title}
-              itemSum={item.itemSum}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            />
+            <View key={item.title}>
+              <ListItem
+                style={style}
+                iconUrl={item.iconUrl}
+                title={item.title}
+                itemSum={item.itemSum}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              />
+              {state.listDeleting ? (
+                <View className="list-deleting" style={btnStyle}>
+                  <Text className="list-deleting-content">删除</Text>
+                </View>
+              ) : null}
+            </View>
           );
         })}
       </View>

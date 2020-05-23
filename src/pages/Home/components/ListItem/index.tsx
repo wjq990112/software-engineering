@@ -20,11 +20,11 @@ type ListItemType = 'default' | 'box';
 export interface IListItemProps {
   style?: Rax.CSSProperties;
   type?: ListItemType;
-  deleting?: boolean;
   iconUrl: string;
   title: string;
   itemSum: number;
   onTouchStart?: (e: Rax.TouchEvent) => void;
+  onTouchMove?: (e: Rax.TouchEvent) => void;
   onTouchEnd?: (e: Rax.TouchEvent) => void;
 }
 
@@ -34,17 +34,20 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   const {
     style,
     type,
-    deleting,
     iconUrl,
     title,
     itemSum,
     onTouchStart,
+    onTouchMove,
     onTouchEnd
   } = props;
 
   const handleBoxTouchStart = (e: Rax.TouchEvent) => {
     onTouchStart(e);
     setIsFocus(true);
+  };
+  const handleBoxTouchMove = (e: Rax.TouchEvent) => {
+    onTouchMove(e);
   };
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
     onTouchEnd(e);
@@ -82,6 +85,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       className={listItemClass}
       style={style}
       onTouchStart={handleBoxTouchStart}
+      onTouchMove={handleBoxTouchMove}
       onTouchEnd={handleBoxTouchEnd}
     >
       <Icon
@@ -92,7 +96,6 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       />
       <Text className={listItemTitleClass}>{title}</Text>
       <Text className={listItemItemSumClass}>{itemSum}</Text>
-      {deleting ? <View className="list-item-deleting"></View> : null}
     </View>
   );
 };
@@ -100,8 +103,8 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 ListItem.defaultProps = {
   style: {},
   type: 'default',
-  deleting: false,
   onTouchStart: () => {},
+  onTouchMove: () => {},
   onTouchEnd: () => {}
 };
 
