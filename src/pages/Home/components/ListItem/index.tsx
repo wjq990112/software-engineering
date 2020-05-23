@@ -22,8 +22,8 @@ export interface IListItemProps {
   type?: ListItemType;
   iconUrl: string;
   title: string;
-  itemSum?: number;
-  onClick?: (e: Rax.TouchEvent) => void;
+  itemSum: number;
+  onClick?: (e: Rax.MouseEvent) => void;
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
@@ -36,7 +36,6 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   };
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
     setIsFocus(false);
-    onClick && onClick(e);
   };
 
   // 处理样式
@@ -71,6 +70,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       style={style}
       onTouchStart={handleBoxTouchStart}
       onTouchEnd={handleBoxTouchEnd}
+      onClick={onClick}
     >
       <Icon
         source={{
@@ -85,8 +85,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 };
 
 ListItem.defaultProps = {
+  style: {},
   type: 'default',
-  itemSum: 0
+  onClick: () => {}
 };
 
 export default ListItem;

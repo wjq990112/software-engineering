@@ -15,10 +15,6 @@ import { state as initState, reducer, constants } from './store';
 
 import './index.css';
 
-export const Context = createContext(
-  {} as { state: IState; dispatch: Rax.Dispatch<IAction> }
-);
-
 interface IClassListResponseData {
   code: number;
   data: {
@@ -34,6 +30,18 @@ interface IMyListResponseData {
   };
   message: string;
 }
+
+interface IContext {
+  state: IState;
+  dispatch: Rax.Dispatch<IAction>;
+}
+
+const initContext: IContext = {
+  state: initState,
+  dispatch: (value: IAction) => {}
+};
+
+export const Context = createContext(initContext);
 
 export default function Home() {
   const [state, dispatch] = useReducer(reducer, initState);
