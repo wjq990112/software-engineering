@@ -2,7 +2,7 @@
  * @file 列表项组件
  * @author 炽翎
  */
-import { createElement, useState } from 'rax';
+import { createElement, memo, useState } from 'rax';
 import View from 'rax-view';
 import Icon from 'rax-icon';
 import Text from 'rax-text';
@@ -20,21 +20,34 @@ type ListItemType = 'default' | 'box';
 export interface IListItemProps {
   style?: Rax.CSSProperties;
   type?: ListItemType;
+  deleting?: boolean;
   iconUrl: string;
   title: string;
   itemSum: number;
-  onClick?: (e: Rax.MouseEvent) => void;
+  onTouchStart?: (e: Rax.TouchEvent) => void;
+  onTouchEnd?: (e: Rax.TouchEvent) => void;
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const { style, type, iconUrl, title, itemSum, onClick } = props;
+  const {
+    style,
+    type,
+    deleting,
+    iconUrl,
+    title,
+    itemSum,
+    onTouchStart,
+    onTouchEnd
+  } = props;
 
   const handleBoxTouchStart = (e: Rax.TouchEvent) => {
+    onTouchStart(e);
     setIsFocus(true);
   };
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
+    onTouchEnd(e);
     setIsFocus(false);
   };
 
@@ -70,7 +83,6 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       style={style}
       onTouchStart={handleBoxTouchStart}
       onTouchEnd={handleBoxTouchEnd}
-      onClick={onClick}
     >
       <Icon
         source={{
@@ -80,6 +92,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       />
       <Text className={listItemTitleClass}>{title}</Text>
       <Text className={listItemItemSumClass}>{itemSum}</Text>
+      {deleting ? <View className="list-item-deleting"></View> : null}
     </View>
   );
 };
@@ -87,7 +100,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 ListItem.defaultProps = {
   style: {},
   type: 'default',
-  onClick: () => {}
+  deleting: false,
+  onTouchStart: () => {},
+  onTouchEnd: () => {}
 };
 
-export default ListItem;
+export default memo(ListItem);

@@ -102,3 +102,13 @@
 .list-item-box-title-focused {
   color: #ffffff;
 }
+
+.list-item-deleting {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  background-color: red;
+}

@@ -10,29 +10,33 @@ describe('Test ListItem Component', () => {
   // 测试显示
   it('Test ListItem Show', () => {
     const props: IListItemProps = {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
+      iconUrl: '',
       title: 'Test',
       itemSum: 0
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
     expect(tree.tagName).toEqual('DIV');
+    expect(tree.children[1].tagName).toEqual('SPAN');
+    expect(tree.children[2].tagName).toEqual('SPAN');
     expect(tree.children[1].children[0]).toEqual(props.title);
     expect(tree.children[2].children[0]).toEqual(`${props.itemSum}`);
   });
 
-  // 测试点击
-  it('Test ListItem Click', () => {
+  // 测试长按
+  it('Test ListItem LongPress', () => {
     const props: IListItemProps = {
-      iconUrl:
-        'https://img.alicdn.com/tfs/TB1H2Kcb1H2gK0jSZFEXXcqMpXa-70-72.png',
+      iconUrl: '',
       title: 'Test',
       itemSum: 0,
-      onClick: jest.fn()
+      onTouchStart: jest.fn(),
+      onTouchEnd: jest.fn()
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
-    expect(tree.eventListeners.click).toEqual(props.onClick);
+    tree.eventListeners.touchstart();
+    expect(props.onTouchStart).toHaveBeenCalled();
+    tree.eventListeners.touchend();
+    expect(props.onTouchEnd).toHaveBeenCalled();
   });
 });

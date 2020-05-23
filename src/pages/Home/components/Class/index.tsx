@@ -2,7 +2,7 @@
  * @file 分类组件
  * @author 炽翎
  */
-import { createElement, useContext } from 'rax';
+import { createElement, memo, useContext } from 'rax';
 import View from 'rax-view';
 
 import ListItem from '../ListItem';
@@ -29,4 +29,4 @@ const Class: Rax.FC = () => {
   );
 };
 
-export default Class;
+export default memo(Class);

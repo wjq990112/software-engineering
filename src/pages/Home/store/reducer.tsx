@@ -16,11 +16,14 @@ const reducer = (state: IState, action: IAction) => {
 
   switch (type) {
     case constants.HANDLE_BOX_LONG_PRESS: {
-      const newState: IState = { ...state, classDeleting: true };
+      const newState: IState = {
+        ...state,
+        classDeleting: !state.classDeleting
+      };
       return newState;
     }
     case constants.HANDLE_LIST_LONG_PRESS: {
-      const newState: IState = { ...state, listDeleting: true };
+      const newState: IState = { ...state, listDeleting: !state.listDeleting };
       return newState;
     }
     case constants.GET_CLASS_LIST: {

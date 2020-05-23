@@ -4,6 +4,7 @@
  */
 .list {
   text-align: center;
+  user-select: none;
 }
 
 .list-title {
