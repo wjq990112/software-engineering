@@ -2,11 +2,13 @@
  * @file 列表项组件
  * @author 炽翎
  */
-import { createElement, memo, useState } from 'rax';
+import { createElement, memo, useRef, useState } from 'rax';
 import View from 'rax-view';
 import Icon from 'rax-icon';
 import Text from 'rax-text';
 import classnames from 'classnames';
+import findDOMNode from 'rax-find-dom-node';
+import transition from 'universal-transition';
 
 import './index.css';
 
@@ -29,7 +31,10 @@ export interface IListItemProps {
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
+  const ref = useRef(null);
+
   const [isFocus, setIsFocus] = useState(false);
+  const [start, setStart] = useState({ x: 0, y: 0 });
 
   const {
     style,
@@ -44,11 +49,39 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   const handleBoxTouchStart = (e: Rax.TouchEvent) => {
     onTouchStart(e);
+    const { clientX: startX, clientY: startY } = e.touches[0];
+    setStart({ x: startX, y: startY });
     setIsFocus(true);
   };
+
   const handleBoxTouchMove = (e: Rax.TouchEvent) => {
     onTouchMove(e);
+    let timer = null;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    timer = setTimeout(() => {
+      const { clientX: endX, clientY: endY } = e.touches[0];
+      const [offsetX, offsetY] = [endX - start.x, endY - start.y];
+      const itemLeftPosition =
+        findDOMNode(ref.current).style.transform.split(
+          /translateX\(|vw\)/g
+        )[1] * 7.5 || 0;
+      if (Math.abs(offsetX) < Math.abs(offsetY)) {
+        console.log('纵向移动');
+      } else if (Math.abs(offsetX) > 10 && Math.abs(offsetX) < 150) {
+        transition(findDOMNode(ref.current), {
+          transform: `translateX(${offsetX}rpx)`
+        });
+      }
+      // TODO: 修改计算方式
+      if (Math.abs(itemLeftPosition) - Math.abs(offsetX) < 50) {
+        console.log('快接近左侧边缘');
+      }
+    }, 200);
   };
+
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
     onTouchEnd(e);
     setIsFocus(false);
@@ -82,10 +115,11 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   return (
     <View
+      ref={ref}
       className={listItemClass}
       style={style}
       onTouchStart={handleBoxTouchStart}
-      onTouchMove={handleBoxTouchMove}
+      onTouchMove={type === 'default' ? handleBoxTouchMove : () => {}}
       onTouchEnd={handleBoxTouchEnd}
     >
       <Icon
