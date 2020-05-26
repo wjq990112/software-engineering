@@ -30,12 +30,15 @@ describe('Test ListItem Component', () => {
       title: 'Test',
       itemSum: 0,
       onTouchStart: jest.fn(),
+      onTouchMove: jest.fn(),
       onTouchEnd: jest.fn()
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
     tree.eventListeners.touchstart();
     expect(props.onTouchStart).toHaveBeenCalled();
+    tree.eventListeners.touchmove();
+    expect(props.onTouchMove).toHaveBeenCalled();
     tree.eventListeners.touchend();
     expect(props.onTouchEnd).toHaveBeenCalled();
   });
