@@ -7,20 +7,18 @@ import View from 'rax-view';
 
 import ListItem from '../ListItem';
 import { Context } from '../../index';
-import { constants } from '../../store';
 
 import './index.css';
 
 const Class: Rax.FC = () => {
+  const [deleting, setDeleting] = useState(false);
   const [timer, setTimer] = useState(null);
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
   const { classList } = state;
 
   const handleTouchStart = (e: Rax.TouchEvent) => {
     const timer = setTimeout(() => {
-      dispatch({
-        type: constants.HANDLE_BOX_LONG_PRESS
-      });
+      setDeleting(!deleting);
     }, 500);
     setTimer(timer);
   };
@@ -42,7 +40,7 @@ const Class: Rax.FC = () => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           />
-          {state.classDeleting ? (
+          {deleting ? (
             <View className="class-deleting">
               <View className="class-deleting-content"></View>
             </View>

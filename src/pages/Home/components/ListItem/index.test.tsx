@@ -17,29 +17,29 @@ describe('Test ListItem Component', () => {
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
     expect(tree.tagName).toEqual('DIV');
-    expect(tree.children[1].tagName).toEqual('SPAN');
-    expect(tree.children[2].tagName).toEqual('SPAN');
-    expect(tree.children[1].children[0]).toEqual(props.title);
-    expect(tree.children[2].children[0]).toEqual(`${props.itemSum}`);
+    expect(tree.children[0].tagName).toEqual('DIV');
+    expect(tree.children[0].children[1].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[2].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[1].children[0]).toEqual(props.title);
+    expect(tree.children[0].children[2].children[0]).toEqual(
+      `${props.itemSum}`
+    );
   });
 
-  // 测试长按
-  it('Test ListItem LongPress', () => {
+  // 测试点击
+  it('Test ListItem Touch', () => {
     const props: IListItemProps = {
       iconUrl: '',
       title: 'Test',
       itemSum: 0,
       onTouchStart: jest.fn(),
-      onTouchMove: jest.fn(),
       onTouchEnd: jest.fn()
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
-    tree.eventListeners.touchstart();
+    tree.children[0].eventListeners.touchstart();
     expect(props.onTouchStart).toHaveBeenCalled();
-    tree.eventListeners.touchmove();
-    expect(props.onTouchMove).toHaveBeenCalled();
-    tree.eventListeners.touchend();
+    tree.children[0].eventListeners.touchend();
     expect(props.onTouchEnd).toHaveBeenCalled();
   });
 });

@@ -22,21 +22,3 @@
   border-radius: 15px;
   background-color: #ffffff;
 }
-
-.list-deleting {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 150rpx;
-  height: 124rpx;
-  background-color: #f2464b;
-}
-
-.list-deleting-content {
-  color: #ffffff;
-  font-size: 36rpx;
-  font-weight: bold;
-  line-height: 124rpx;
-  width: auto;
-  text-align: center;
-}

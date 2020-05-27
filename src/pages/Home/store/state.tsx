@@ -4,16 +4,15 @@
  */
 import { IListItemProps } from '../components/ListItem';
 
+export interface IListItem extends IListItemProps {
+  id: number;
+}
 export interface IState {
-  classDeleting: boolean;
-  listDeleting: boolean;
-  classList: Array<IListItemProps>;
-  myList: Array<IListItemProps>;
+  classList: Array<IListItem>;
+  myList: Array<IListItem>;
 }
 
 const initState: IState = {
-  classDeleting: false,
-  listDeleting: false,
   classList: [],
   myList: []
 };

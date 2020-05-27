@@ -7,10 +7,13 @@ import View from 'rax-view';
 import Icon from 'rax-icon';
 import Text from 'rax-text';
 import classnames from 'classnames';
+import GestureView from 'rax-gesture-view';
 import findDOMNode from 'rax-find-dom-node';
 import transition from 'universal-transition';
+import { isWeb, isWeex } from 'universal-env';
 
 import './index.css';
+import { PanEvent } from 'rax-gesture-view/lib/types';
 
 type ListItemType = 'default' | 'box';
 
@@ -26,7 +29,6 @@ export interface IListItemProps {
   title: string;
   itemSum: number;
   onTouchStart?: (e: Rax.TouchEvent) => void;
-  onTouchMove?: (e: Rax.TouchEvent) => void;
   onTouchEnd?: (e: Rax.TouchEvent) => void;
 }
 
@@ -34,7 +36,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   const ref = useRef(null);
 
   const [isFocus, setIsFocus] = useState(false);
-  const [start, setStart] = useState({ x: 0, y: 0 });
+  const [deleting, setDeleting] = useState(false);
 
   const {
     style,
@@ -43,43 +45,48 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     title,
     itemSum,
     onTouchStart,
-    onTouchMove,
     onTouchEnd
   } = props;
 
-  const handleBoxTouchStart = (e: Rax.TouchEvent) => {
-    onTouchStart(e);
-    const { clientX: startX, clientY: startY } = e.touches[0];
-    setStart({ x: startX, y: startY });
-    setIsFocus(true);
+  const swipe = () => {
+    const position = deleting ? -150 : 0;
+    transition(
+      findDOMNode(ref.current),
+      {
+        transform: `translateX(${position}rpx)`
+      },
+      { duration: 200, timingFunction: 'ease-in-out' },
+      () => {
+        setDeleting(!deleting);
+      }
+    );
   };
 
-  const handleBoxTouchMove = (e: Rax.TouchEvent) => {
-    onTouchMove(e);
-    let timer = null;
-    if (timer) {
-      clearTimeout(timer);
-      timer = null;
+  const handleHorizontalPan = (e: PanEvent) => {
+    // Weex 环境下无法获取 delta
+    const { state, changedTouches } = e;
+    if (isWeb) {
+      if (type === 'default' && state === 'end') {
+        const deltaX = changedTouches[0].deltaX;
+        // 判断左右划动
+        if (deleting && deltaX < 0) {
+          swipe();
+        }
+        if (!deleting && deltaX > 0) {
+          swipe();
+        }
+      }
     }
-    timer = setTimeout(() => {
-      const { clientX: endX, clientY: endY } = e.touches[0];
-      const [offsetX, offsetY] = [endX - start.x, endY - start.y];
-      const itemLeftPosition =
-        findDOMNode(ref.current).style.transform.split(
-          /translateX\(|vw\)/g
-        )[1] * 7.5 || 0;
-      if (Math.abs(offsetX) < Math.abs(offsetY)) {
-        console.log('纵向移动');
-      } else if (Math.abs(offsetX) > 10 && Math.abs(offsetX) < 150) {
-        transition(findDOMNode(ref.current), {
-          transform: `translateX(${offsetX}rpx)`
-        });
+    if (isWeex) {
+      if (type === 'default' && state === 'end') {
+        swipe();
       }
-      // TODO: 修改计算方式
-      if (Math.abs(itemLeftPosition) - Math.abs(offsetX) < 50) {
-        console.log('快接近左侧边缘');
-      }
-    }, 200);
+    }
+  };
+
+  const handleBoxTouchStart = (e: Rax.TouchEvent) => {
+    onTouchStart(e);
+    setIsFocus(true);
   };
 
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
@@ -114,23 +121,29 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   });
 
   return (
-    <View
-      ref={ref}
-      className={listItemClass}
-      style={style}
-      onTouchStart={handleBoxTouchStart}
-      onTouchMove={type === 'default' ? handleBoxTouchMove : () => {}}
-      onTouchEnd={handleBoxTouchEnd}
-    >
-      <Icon
-        source={{
-          uri: iconUrl
-        }}
-        className={listItemIconClass}
-      />
-      <Text className={listItemTitleClass}>{title}</Text>
-      <Text className={listItemItemSumClass}>{itemSum}</Text>
-    </View>
+    <GestureView onHorizontalPan={handleHorizontalPan}>
+      <View
+        ref={ref}
+        className={listItemClass}
+        style={style}
+        onTouchStart={handleBoxTouchStart}
+        onTouchEnd={handleBoxTouchEnd}
+      >
+        <Icon
+          source={{
+            uri: iconUrl
+          }}
+          className={listItemIconClass}
+        />
+        <Text className={listItemTitleClass}>{title}</Text>
+        <Text className={listItemItemSumClass}>{itemSum}</Text>
+        {type === 'default' && deleting ? (
+          <View className="list-item-deleting" style={style}>
+            <Text className="list-item-deleting-content">删除</Text>
+          </View>
+        ) : null}
+      </View>
+    </GestureView>
   );
 };
 
@@ -138,7 +151,6 @@ ListItem.defaultProps = {
   style: {},
   type: 'default',
   onTouchStart: () => {},
-  onTouchMove: () => {},
   onTouchEnd: () => {}
 };
 
