@@ -52,6 +52,24 @@
   color: #ffffff;
 }
 
+.list-item-deleting {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150rpx;
+  height: 124rpx;
+  background-color: #f2464b;
+}
+
+.list-item-deleting-content {
+  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 124rpx;
+  width: auto;
+  text-align: center;
+}
+
 .list-item-box {
   position: relative;
   flex-direction: row;
@@ -103,20 +121,19 @@
   color: #ffffff;
 }
 
-.list-item-deleting {
+.list-item-box-deleting {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 150rpx;
-  height: 124rpx;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 5px;
   background-color: #f2464b;
 }
 
-.list-item-deleting-content {
+.list-item-box-deleting-content {
   color: #ffffff;
   font-size: 36rpx;
   font-weight: bold;
-  line-height: 124rpx;
   width: auto;
   text-align: center;
 }

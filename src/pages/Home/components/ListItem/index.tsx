@@ -90,6 +90,13 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   const handleBoxTouchStart = (e: Rax.TouchEvent) => {
     onTouchStart(e);
+    if (type === 'box') {
+      const timer = setTimeout(() => {
+        setDeleting(!deleting);
+        setIsFocus(false);
+        clearTimeout(timer);
+      }, 500);
+    }
     setIsFocus(true);
   };
 
@@ -98,9 +105,23 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     setIsFocus(false);
   };
 
+  const remove = () => {
+    transition(
+      findDOMNode(ref.current),
+      {
+        transform: 'translateX(900rpx)'
+      },
+      { duration: 200, timingFunction: 'ease-in-out' },
+      () => {}
+    );
+  };
+
   const handleDeleteBtnClick = (e: Rax.MouseEvent) => {
-    onDelete(id);
-    swipe();
+    remove();
+    const timer = setTimeout(() => {
+      onDelete(id);
+      clearTimeout(timer);
+    }, 200);
   };
 
   // 处理样式
@@ -128,6 +149,14 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     'list-item-box-title': type === 'box',
     'list-item-box-title-focused': type === 'box' && isFocus
   });
+  const listItemDeleting = classnames({
+    'list-item-deleting': type === 'default',
+    'list-item-box-deleting': type === 'box'
+  });
+  const listItemDeletingContent = classnames({
+    'list-item-deleting-content': type === 'default',
+    'list-item-box-deleting-content': type === 'box'
+  });
 
   return (
     <GestureView onHorizontalPan={handleHorizontalPan}>
@@ -146,13 +175,13 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
         />
         <Text className={listItemTitleClass}>{title}</Text>
         <Text className={listItemItemSumClass}>{itemSum}</Text>
-        {type === 'default' && deleting ? (
+        {deleting ? (
           <View
-            className="list-item-deleting"
-            style={style}
+            className={listItemDeleting}
+            style={type === 'default' ? style : {}}
             onClick={handleDeleteBtnClick}
           >
-            <Text className="list-item-deleting-content">删除</Text>
+            <Text className={listItemDeletingContent}>删除</Text>
           </View>
         ) : null}
       </View>
@@ -164,7 +193,8 @@ ListItem.defaultProps = {
   style: {},
   type: 'default',
   onTouchStart: () => {},
-  onTouchEnd: () => {}
+  onTouchEnd: () => {},
+  onDelete: () => {}
 };
 
 export default memo(ListItem);

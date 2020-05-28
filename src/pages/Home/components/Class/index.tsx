@@ -12,22 +12,8 @@ import { constants } from '../../store';
 import './index.css';
 
 const Class: Rax.FC = () => {
-  const [deleting, setDeleting] = useState(false);
-  const [timer, setTimer] = useState(null);
   const { state, dispatch } = useContext(Context);
   const { classList } = state;
-
-  const handleTouchStart = (e: Rax.TouchEvent) => {
-    const timer = setTimeout(() => {
-      setDeleting(!deleting);
-    }, 500);
-    setTimer(timer);
-  };
-
-  const handleTouchEnd = (e: Rax.TouchEvent) => {
-    clearTimeout(timer);
-    setTimer(null);
-  };
 
   const onItemDelete = (id: number) => {
     dispatch({
@@ -40,25 +26,15 @@ const Class: Rax.FC = () => {
     <View className="class">
       {classList.length ? (
         classList.map((item) => (
-          <View key={item.id}>
-            <ListItem
-              type="box"
-              id={item.id}
-              iconUrl={item.iconUrl}
-              title={item.title}
-              itemSum={item.itemSum}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            />
-            {deleting ? (
-              <View
-                className="class-deleting"
-                onClick={() => onItemDelete(item.id)}
-              >
-                <View className="class-deleting-content"></View>
-              </View>
-            ) : null}
-          </View>
+          <ListItem
+            key={item.id}
+            type="box"
+            id={item.id}
+            iconUrl={item.iconUrl}
+            title={item.title}
+            itemSum={item.itemSum}
+            onDelete={onItemDelete}
+          />
         ))
       ) : (
         <View>+</View>
