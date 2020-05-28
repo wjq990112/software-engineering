@@ -6,16 +6,15 @@ import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
 import ListItem, { IListItemProps } from './index';
 
-beforeEach(function () {
+beforeEach(() => {
   jest.useFakeTimers();
 });
 
 describe('Test ListItem Component', () => {
   // Default
   it('Test Default ListItem', () => {
-    jest.runAllTimers();
-
     const props: IListItemProps = {
+      id: 1,
       iconUrl: '',
       title: 'Test',
       itemSum: 0,
@@ -24,6 +23,7 @@ describe('Test ListItem Component', () => {
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
+    jest.runAllTimers();
 
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
@@ -41,14 +41,13 @@ describe('Test ListItem Component', () => {
     tree.children[0].eventListeners.touchend();
     expect(props.onTouchEnd).toHaveBeenCalled();
 
-    // 测试滑动
+    // TODO: 测试滑动
   });
 
   // Box
   it('Test Box ListItem', () => {
-    jest.runAllTimers();
-
     const props: IListItemProps = {
+      id: 1,
       type: 'box',
       iconUrl: '',
       title: 'Test',
@@ -58,6 +57,8 @@ describe('Test ListItem Component', () => {
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
+    jest.runAllTimers();
+
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0].tagName).toEqual('DIV');
@@ -67,10 +68,13 @@ describe('Test ListItem Component', () => {
     expect(tree.children[0].children[2].children[0]).toEqual(
       String(props.itemSum)
     );
+
     // 测试点击
     tree.children[0].eventListeners.touchstart();
     expect(props.onTouchStart).toHaveBeenCalled();
     tree.children[0].eventListeners.touchend();
     expect(props.onTouchEnd).toHaveBeenCalled();
+
+    // TODO: 测试滑动
   });
 });

@@ -36,6 +36,7 @@
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "@rax-types/rax": "^1.0.6",
+    "@testing-library/react-hooks": "^3.2.1",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^25.2.3",
     "babel-eslint": "^10.0.3",
@@ -51,6 +52,8 @@
     "eslint-plugin-react": "^7.18.0",
     "jest": "^26.0.1",
     "rax-test-renderer": "^1.0.0",
+    "react": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.7.5"
   },
   "jest": {

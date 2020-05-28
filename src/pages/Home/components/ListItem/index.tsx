@@ -25,6 +25,7 @@ type ListItemType = 'default' | 'box';
 export interface IListItemProps {
   style?: Rax.CSSProperties;
   type?: ListItemType;
+  id: number;
   iconUrl: string;
   title: string;
   itemSum: number;

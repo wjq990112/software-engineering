@@ -4,12 +4,9 @@
  */
 import { IListItemProps } from '../components/ListItem';
 
-export interface IListItem extends IListItemProps {
-  id: number;
-}
 export interface IState {
-  classList: Array<IListItem>;
-  myList: Array<IListItem>;
+  classList: Array<IListItemProps>;
+  myList: Array<IListItemProps>;
 }
 
 const initState: IState = {

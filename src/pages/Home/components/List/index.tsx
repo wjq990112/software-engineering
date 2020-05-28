@@ -29,7 +29,8 @@ const List: Rax.FC = () => {
           };
           return (
             <ListItem
-              key={item.title}
+              key={item.id}
+              id={item.id}
               style={style}
               iconUrl={item.iconUrl}
               title={item.title}

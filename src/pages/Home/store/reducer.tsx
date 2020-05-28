@@ -2,12 +2,12 @@
  * @file Reducer
  * @author 炽翎
  */
-import { IState, IListItem } from './state';
+import { IState } from './state';
 import * as constants from './constants';
 
 export interface IAction {
   type: string;
-  data?: Array<IListItem> & number;
+  data?: any;
 }
 
 const reducer = (state: IState, action: IAction) => {
@@ -23,12 +23,12 @@ const reducer = (state: IState, action: IAction) => {
       return newState;
     }
     case constants.DELETE_CLASS_ITEM: {
-      const newClassList = state.classList.filter((item) => item.id === data);
+      const newClassList = state.classList.filter((item) => item.id !== data);
       const newState: IState = { ...state, classList: newClassList };
       return newState;
     }
     case constants.DELETE_MY_ITEM: {
-      const newMyList = state.myList.filter((item) => item.id === data);
+      const newMyList = state.myList.filter((item) => item.id !== data);
       const newState: IState = { ...state, myList: newMyList };
       return newState;
     }

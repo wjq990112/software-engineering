@@ -31,9 +31,10 @@ const Class: Rax.FC = () => {
   return (
     <View className="class">
       {classList.map((item) => (
-        <View key={item.title}>
+        <View key={item.id}>
           <ListItem
             type="box"
+            id={item.id}
             iconUrl={item.iconUrl}
             title={item.title}
             itemSum={item.itemSum}
