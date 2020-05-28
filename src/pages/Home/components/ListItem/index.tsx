@@ -64,7 +64,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   const handleHorizontalPan = (e: PanEvent) => {
     // Weex 环境下无法获取 delta
-    const { state, changedTouches } = e;
+    const { state, changedTouches } = e || {};
     if (isWeb) {
       if (type === 'default' && state === 'end') {
         const deltaX = changedTouches[0].deltaX;
