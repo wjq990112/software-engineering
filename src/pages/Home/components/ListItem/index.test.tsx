@@ -6,9 +6,6 @@ import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
 import ListItem, { IListItemProps } from './index';
 
-beforeEach(() => {
-  jest.useFakeTimers();
-});
 
 describe('Test ListItem Component', () => {
   // Default
@@ -23,7 +20,6 @@ describe('Test ListItem Component', () => {
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
-    jest.runAllTimers();
 
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
@@ -57,7 +53,6 @@ describe('Test ListItem Component', () => {
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
-    jest.runAllTimers();
 
     // 测试显示
     expect(tree.tagName).toEqual('DIV');

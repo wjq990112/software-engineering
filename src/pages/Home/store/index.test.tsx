@@ -4,10 +4,6 @@ import { state as initState, reducer, constants } from './index';
 import { IState } from './state';
 import { IListItemProps } from '../components/ListItem';
 
-beforeEach(() => {
-  jest.useFakeTimers();
-});
-
 const useTest = () => {
   const [state, dispatch] = useReducer(reducer, initState);
 

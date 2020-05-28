@@ -31,6 +31,7 @@ export interface IListItemProps {
   itemSum: number;
   onTouchStart?: (e: Rax.TouchEvent) => void;
   onTouchEnd?: (e: Rax.TouchEvent) => void;
+  onDelete?: (id: number) => void;
 }
 
 const ListItem: Rax.FC<IListItemProps> = (props) => {
@@ -42,11 +43,13 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   const {
     style,
     type,
+    id,
     iconUrl,
     title,
     itemSum,
     onTouchStart,
-    onTouchEnd
+    onTouchEnd,
+    onDelete
   } = props;
 
   const swipe = () => {
@@ -95,6 +98,11 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     setIsFocus(false);
   };
 
+  const handleDeleteBtnClick = (e: Rax.MouseEvent) => {
+    onDelete(id);
+    swipe();
+  };
+
   // 处理样式
   const listItemClass = classnames({
     'list-item': type === 'default',
@@ -139,7 +147,11 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
         <Text className={listItemTitleClass}>{title}</Text>
         <Text className={listItemItemSumClass}>{itemSum}</Text>
         {type === 'default' && deleting ? (
-          <View className="list-item-deleting" style={style}>
+          <View
+            className="list-item-deleting"
+            style={style}
+            onClick={handleDeleteBtnClick}
+          >
             <Text className="list-item-deleting-content">删除</Text>
           </View>
         ) : null}
