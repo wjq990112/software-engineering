@@ -22,3 +22,31 @@
   border-radius: 15px;
   background-color: #ffffff;
 }
+
+.list-placeholder {
+  position: absolute;
+  top: 12;
+  left: 287.5;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: #dcdcdc;
+}
+
+.list-placeholder-row {
+  position: absolute;
+  top: 20;
+  left: 45;
+  width: 10rpx;
+  height: 60rpx;
+  background-color: #ffffff;
+}
+
+.list-placeholder-col {
+  position: absolute;
+  top: 45;
+  left: 20;
+  width: 60rpx;
+  height: 10rpx;
+  background-color: #ffffff;
+}

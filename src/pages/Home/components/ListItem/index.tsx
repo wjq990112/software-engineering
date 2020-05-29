@@ -39,6 +39,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   const [isFocus, setIsFocus] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [timer, setTimer] = useState(null);
 
   const {
     style,
@@ -53,9 +54,10 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   } = props;
 
   const swipe = () => {
-    const position = deleting ? -150 : 0;
+    const position = deleting ? 0 : -150;
+    const element = findDOMNode(ref.current);
     transition(
-      findDOMNode(ref.current),
+      element,
       {
         transform: `translateX(${position}rpx)`
       },
@@ -73,10 +75,10 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       if (type === 'default' && state === 'end') {
         const deltaX = changedTouches[0].deltaX;
         // 判断左右划动
-        if (deleting && deltaX < 0) {
+        if (!deleting && deltaX < 0) {
           swipe();
         }
-        if (!deleting && deltaX > 0) {
+        if (deleting && deltaX > 0) {
           swipe();
         }
       }
@@ -94,20 +96,22 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       const timer = setTimeout(() => {
         setDeleting(!deleting);
         setIsFocus(false);
-        clearTimeout(timer);
       }, 500);
+      setTimer(timer);
     }
     setIsFocus(true);
   };
 
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
     onTouchEnd(e);
+    clearTimeout(timer);
     setIsFocus(false);
   };
 
   const remove = () => {
+    const element = findDOMNode(ref.current);
     transition(
-      findDOMNode(ref.current),
+      element,
       {
         transform: 'translateX(900rpx)'
       },
@@ -159,28 +163,31 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   });
 
   return (
-    <GestureView onHorizontalPan={handleHorizontalPan}>
+    <GestureView
+      onHorizontalPan={type === 'default' ? handleHorizontalPan : () => {}}
+    >
       <View
         ref={ref}
-        className={listItemClass}
-        style={style}
+        style={{
+          flexDirection: 'row',
+          width: type === 'default' ? '925rpx' : 'auto',
+          ...style
+        }}
         onTouchStart={handleBoxTouchStart}
         onTouchEnd={handleBoxTouchEnd}
       >
-        <Icon
-          source={{
-            uri: iconUrl
-          }}
-          className={listItemIconClass}
-        />
-        <Text className={listItemTitleClass}>{title}</Text>
-        <Text className={listItemItemSumClass}>{itemSum}</Text>
-        {deleting ? (
-          <View
-            className={listItemDeleting}
-            style={type === 'default' ? style : {}}
-            onClick={handleDeleteBtnClick}
-          >
+        <View className={listItemClass}>
+          <Icon
+            source={{
+              uri: iconUrl
+            }}
+            className={listItemIconClass}
+          />
+          <Text className={listItemTitleClass}>{title}</Text>
+          <Text className={listItemItemSumClass}>{itemSum}</Text>
+        </View>
+        {deleting || type === 'default' ? (
+          <View className={listItemDeleting} onClick={handleDeleteBtnClick}>
             <Text className={listItemDeletingContent}>删除</Text>
           </View>
         ) : null}

@@ -7,6 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  width: 675rpx;
   height: 124rpx;
   padding: 12rpx 37.5rpx;
 }
@@ -41,8 +42,8 @@
 
 .list-item-title {
   position: absolute;
-  top: 38rpx;
-  left: 149.5rpx;
+  top: 38;
+  left: 149.5;
   color: #333333;
   font-size: 36rpx;
   line-height: 48rpx;
@@ -53,9 +54,6 @@
 }
 
 .list-item-deleting {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 150rpx;
   height: 124rpx;
   background-color: #f2464b;
@@ -111,8 +109,8 @@
 
 .list-item-box-title {
   position: absolute;
-  left: 32.5rpx;
-  bottom: 20rpx;
+  left: 32.5;
+  bottom: 20;
   color: #77777b;
   font-size: 36rpx;
 }
@@ -123,8 +121,8 @@
 
 .list-item-box-deleting {
   position: absolute;
-  right: 20rpx;
-  bottom: 20rpx;
+  right: 60;
+  bottom: 60;
   padding: 5rpx 10rpx;
   border-radius: 5px;
   background-color: #f2464b;

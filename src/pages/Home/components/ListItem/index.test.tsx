@@ -6,7 +6,6 @@ import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
 import ListItem, { IListItemProps } from './index';
 
-
 describe('Test ListItem Component', () => {
   // Default
   it('Test Default ListItem', () => {
@@ -24,10 +23,12 @@ describe('Test ListItem Component', () => {
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0].tagName).toEqual('DIV');
-    expect(tree.children[0].children[1].tagName).toEqual('SPAN');
-    expect(tree.children[0].children[2].tagName).toEqual('SPAN');
-    expect(tree.children[0].children[1].children[0]).toEqual(props.title);
-    expect(tree.children[0].children[2].children[0]).toEqual(
+    expect(tree.children[0].children[0].children[1].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[0].children[2].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[0].children[1].children[0]).toEqual(
+      props.title
+    );
+    expect(tree.children[0].children[0].children[2].children[0]).toEqual(
       String(props.itemSum)
     );
 
@@ -57,10 +58,12 @@ describe('Test ListItem Component', () => {
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
     expect(tree.children[0].tagName).toEqual('DIV');
-    expect(tree.children[0].children[1].tagName).toEqual('SPAN');
-    expect(tree.children[0].children[2].tagName).toEqual('SPAN');
-    expect(tree.children[0].children[1].children[0]).toEqual(props.title);
-    expect(tree.children[0].children[2].children[0]).toEqual(
+    expect(tree.children[0].children[0].children[1].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[0].children[2].tagName).toEqual('SPAN');
+    expect(tree.children[0].children[0].children[1].children[0]).toEqual(
+      props.title
+    );
+    expect(tree.children[0].children[0].children[2].children[0]).toEqual(
       String(props.itemSum)
     );
 

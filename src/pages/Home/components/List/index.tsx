@@ -49,7 +49,10 @@ const List: Rax.FC = () => {
             );
           })
         ) : (
-          <View>+</View>
+          <View className="list-placeholder">
+            <View className="list-placeholder-row"></View>
+            <View className="list-placeholder-col"></View>
+          </View>
         )}
       </View>
     </View>

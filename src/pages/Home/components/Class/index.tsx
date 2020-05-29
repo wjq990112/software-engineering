@@ -37,7 +37,10 @@ const Class: Rax.FC = () => {
           />
         ))
       ) : (
-        <View>+</View>
+        <View className="class-placeholder">
+          <View className="class-placeholder-row"></View>
+          <View className="class-placeholder-col"></View>
+        </View>
       )}
     </View>
   );
