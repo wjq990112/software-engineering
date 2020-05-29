@@ -24,6 +24,7 @@
     "rax-view": "^1.0.0",
     "universal-animation": "^1.1.1",
     "universal-env": "^3.2.0",
+    "universal-navigate": "^1.2.0",
     "universal-request": "^2.2.0",
     "universal-transition": "^1.1.1"
   },
@@ -43,7 +44,6 @@
     "babel-jest": "^26.0.1",
     "babel-plugin-transform-jsx-stylesheet": "^0.6.11",
     "build-plugin-rax-app": "^4.0.0",
-    "build-plugin-rax-multi-pages": "^2.0.0",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",

@@ -8,10 +8,10 @@ import ScrollView from 'rax-scrollview';
 import Class from './components/Class';
 import List from './components/List';
 import { GET } from '../../utils/request';
-import { IState } from './store/state';
-import { IAction } from './store/reducer';
+import { IState } from '../store/state';
+import { IAction } from '../store/reducer';
 import { IListItemProps } from './components/ListItem';
-import { state as initState, reducer, constants } from './store';
+import { state as initState, reducer, constants } from '../store';
 
 import './index.css';
 

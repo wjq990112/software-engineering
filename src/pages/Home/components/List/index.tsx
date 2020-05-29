@@ -5,10 +5,12 @@
 import { createElement, memo, useContext } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
+import { isWeex } from 'universal-env';
 
 import ListItem from '../ListItem';
 import { Context } from '../../index';
-import { constants } from '../../store';
+import { constants } from '../../../store';
+import { push } from '../../../../utils/tools';
 
 import './index.css';
 
@@ -23,6 +25,17 @@ const List: Rax.FC = () => {
       type: constants.DELETE_MY_ITEM,
       data: id
     });
+  };
+
+  const switchRoute = () => {
+    push({
+      url: `/${isWeex ? 'weex' : 'web'}/detail${isWeex ? '?wh_weex=true' : ''}`,
+      animated: true
+    })
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -49,7 +62,7 @@ const List: Rax.FC = () => {
             );
           })
         ) : (
-          <View className="list-placeholder">
+          <View className="list-placeholder" onTouchEnd={switchRoute}>
             <View className="list-placeholder-row"></View>
             <View className="list-placeholder-col"></View>
           </View>

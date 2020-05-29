@@ -2,7 +2,7 @@
  * @file State
  * @author 炽翎
  */
-import { IListItemProps } from '../components/ListItem';
+import { IListItemProps } from '../Home/components/ListItem';
 
 export interface IState {
   classList: Array<IListItemProps>;

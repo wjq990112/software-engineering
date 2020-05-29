@@ -2,12 +2,12 @@
  * @file 分类组件
  * @author 炽翎
  */
-import { createElement, memo, useState, useContext } from 'rax';
+import { createElement, memo, useContext } from 'rax';
 import View from 'rax-view';
 
 import ListItem from '../ListItem';
 import { Context } from '../../index';
-import { constants } from '../../store';
+import { constants } from '../../../store';
 
 import './index.css';
 

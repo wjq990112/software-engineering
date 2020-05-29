@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import GestureView from 'rax-gesture-view';
 import findDOMNode from 'rax-find-dom-node';
 import transition from 'universal-transition';
-import { isWeb, isWeex } from 'universal-env';
+import { isWeex } from 'universal-env';
 
 import './index.css';
 import { PanEvent } from 'rax-gesture-view/lib/types';
@@ -71,7 +71,11 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   const handleHorizontalPan = (e: PanEvent) => {
     // Weex 环境下无法获取 delta
     const { state, changedTouches } = e || {};
-    if (isWeb) {
+    if (isWeex) {
+      if (type === 'default' && state === 'end') {
+        swipe();
+      }
+    } else {
       if (type === 'default' && state === 'end') {
         const deltaX = changedTouches[0].deltaX;
         // 判断左右划动
@@ -81,11 +85,6 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
         if (deleting && deltaX > 0) {
           swipe();
         }
-      }
-    }
-    if (isWeex) {
-      if (type === 'default' && state === 'end') {
-        swipe();
       }
     }
   };
@@ -120,7 +119,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     );
   };
 
-  const handleDeleteBtnClick = (e: Rax.MouseEvent) => {
+  const handleDeleteBtnClick = (e: Rax.TouchEvent) => {
     remove();
     const timer = setTimeout(() => {
       onDelete(id);
@@ -187,7 +186,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
           <Text className={listItemItemSumClass}>{itemSum}</Text>
         </View>
         {deleting || type === 'default' ? (
-          <View className={listItemDeleting} onClick={handleDeleteBtnClick}>
+          <View className={listItemDeleting} onTouchEnd={handleDeleteBtnClick}>
             <Text className={listItemDeletingContent}>删除</Text>
           </View>
         ) : null}
