@@ -33,12 +33,23 @@ describe('Test ListItem Component', () => {
     );
 
     // 测试点击
+    const touchstart = jest.spyOn(
+      tree.children[0].eventListeners,
+      'touchstart'
+    );
+    tree.children[0].eventListeners.touchstart = touchstart;
     tree.children[0].eventListeners.touchstart();
-    expect(props.onTouchStart).toHaveBeenCalled();
+    expect(touchstart).toHaveBeenCalled();
+    const touchend = jest.spyOn(tree.children[0].eventListeners, 'touchend');
+    tree.children[0].eventListeners.touchend = touchend;
     tree.children[0].eventListeners.touchend();
-    expect(props.onTouchEnd).toHaveBeenCalled();
+    expect(touchend).toHaveBeenCalled();
 
     // TODO: 测试滑动
+    const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
+    tree.eventListeners.horizontalPan = horizontalPan;
+    tree.eventListeners.horizontalPan();
+    expect(horizontalPan).toHaveBeenCalled();
   });
 
   // Box
@@ -68,11 +79,22 @@ describe('Test ListItem Component', () => {
     );
 
     // 测试点击
+    const touchstart = jest.spyOn(
+      tree.children[0].eventListeners,
+      'touchstart'
+    );
+    tree.children[0].eventListeners.touchstart = touchstart;
     tree.children[0].eventListeners.touchstart();
-    expect(props.onTouchStart).toHaveBeenCalled();
+    expect(touchstart).toHaveBeenCalled();
+    const touchend = jest.spyOn(tree.children[0].eventListeners, 'touchend');
+    tree.children[0].eventListeners.touchend = touchend;
     tree.children[0].eventListeners.touchend();
-    expect(props.onTouchEnd).toHaveBeenCalled();
+    expect(touchend).toHaveBeenCalled();
 
     // TODO: 测试滑动
+    const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
+    tree.eventListeners.horizontalPan = horizontalPan;
+    tree.eventListeners.horizontalPan();
+    expect(horizontalPan).toHaveBeenCalled();
   });
 });
