@@ -6,6 +6,10 @@ import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
 import ListItem, { IListItemProps } from './index';
 
+beforeAll(() => {
+  jest.useFakeTimers();
+});
+
 describe('Test ListItem Component', () => {
   // Default
   it('Test Default ListItem', () => {
@@ -15,10 +19,12 @@ describe('Test ListItem Component', () => {
       title: 'Test',
       itemSum: 0,
       onTouchStart: jest.fn(),
-      onTouchEnd: jest.fn()
+      onTouchEnd: jest.fn(),
+      onDelete: jest.fn()
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
+    jest.runAllTimers();
 
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
@@ -45,11 +51,22 @@ describe('Test ListItem Component', () => {
     tree.children[0].eventListeners.touchend();
     expect(touchend).toHaveBeenCalled();
 
-    // TODO: 测试滑动
+    // 测试滑动
     const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
     tree.eventListeners.horizontalPan = horizontalPan;
     tree.eventListeners.horizontalPan();
     expect(horizontalPan).toHaveBeenCalled();
+    expect(tree.children[0].children[1]).toBeDefined();
+
+    // TODO: 测试删除
+    const ondelete = jest.spyOn(
+      tree.children[0].children[1].eventListeners,
+      'touchend'
+    );
+    tree.children[0].children[1].eventListeners.touchend = ondelete;
+    expect(
+      tree.children[0].children[1].eventListeners.touchend
+    ).not.toHaveBeenCalled();
   });
 
   // Box
@@ -91,10 +108,11 @@ describe('Test ListItem Component', () => {
     tree.children[0].eventListeners.touchend();
     expect(touchend).toHaveBeenCalled();
 
-    // TODO: 测试滑动
+    // 测试滑动
     const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
     tree.eventListeners.horizontalPan = horizontalPan;
     tree.eventListeners.horizontalPan();
     expect(horizontalPan).toHaveBeenCalled();
+    expect(tree.children[0].children[1]).toBeUndefined();
   });
 });
