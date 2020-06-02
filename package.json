@@ -5,7 +5,7 @@
     "build": "build-scripts build",
     "start": "build-scripts start",
     "lint": "eslint --ext .js --ext .jsx ./",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -40,6 +40,7 @@
     "@rax-types/rax": "^1.0.6",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/classnames": "^2.2.10",
+    "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.0.1",
@@ -47,11 +48,14 @@
     "build-plugin-rax-app": "^4.0.0",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-rax": "^1.0.3",
     "eslint": "^6.8.0",
     "eslint-config-rax": "^0.0.3",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-react": "^7.18.0",
     "jest": "^26.0.1",
+    "jest-enzyme": "^7.1.2",
     "rax-test-renderer": "^1.0.0",
     "react": "^16.13.1",
     "react-test-renderer": "^16.13.1",
