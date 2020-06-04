@@ -24,7 +24,6 @@ describe('Test ListItem Component', () => {
     };
     const component = renderer.create(<ListItem {...props} />);
     const tree = component.toJSON();
-    jest.runAllTimers();
 
     // 测试显示
     expect(tree.tagName).toEqual('DIV');
@@ -43,18 +42,19 @@ describe('Test ListItem Component', () => {
       tree.children[0].eventListeners,
       'touchstart'
     );
-    tree.children[0].eventListeners.touchstart = touchstart;
     tree.children[0].eventListeners.touchstart();
     expect(touchstart).toHaveBeenCalled();
     const touchend = jest.spyOn(tree.children[0].eventListeners, 'touchend');
-    tree.children[0].eventListeners.touchend = touchend;
     tree.children[0].eventListeners.touchend();
     expect(touchend).toHaveBeenCalled();
 
     // 测试滑动
     const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
-    tree.eventListeners.horizontalPan = horizontalPan;
-    tree.eventListeners.horizontalPan();
+    const event = {
+      state: 'end',
+      changedTouches: [{ deltaX: -150 }]
+    };
+    tree.eventListeners.horizontalpan(event);
     expect(horizontalPan).toHaveBeenCalled();
     expect(tree.children[0].children[1]).toBeDefined();
 
@@ -63,10 +63,8 @@ describe('Test ListItem Component', () => {
       tree.children[0].children[1].eventListeners,
       'touchend'
     );
-    tree.children[0].children[1].eventListeners.touchend = ondelete;
-    expect(
-      tree.children[0].children[1].eventListeners.touchend
-    ).not.toHaveBeenCalled();
+    tree.children[0].children[1].eventListeners.touchend();
+    expect(ondelete).toHaveBeenCalled();
   });
 
   // Box

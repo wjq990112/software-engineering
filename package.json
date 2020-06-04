@@ -38,6 +38,7 @@
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "@rax-types/rax": "^1.0.6",
+    "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/classnames": "^2.2.10",
     "@types/enzyme": "^3.10.5",
@@ -55,18 +56,11 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-react": "^7.18.0",
     "jest": "^26.0.1",
-    "jest-enzyme": "^7.1.2",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
     "rax-test-renderer": "^1.0.0",
     "react": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "typescript": "^3.7.5"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
   },
   "config": {
     "commitizen": {
