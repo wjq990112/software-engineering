@@ -58,12 +58,13 @@ describe('Test ListItem Component', () => {
     expect(horizontalPan).toHaveBeenCalled();
     expect(tree.children[0].children[1]).toBeDefined();
 
-    // TODO: 测试删除
+    // 测试删除
     const ondelete = jest.spyOn(
       tree.children[0].children[1].eventListeners,
       'touchend'
     );
     tree.children[0].children[1].eventListeners.touchend();
+    jest.runAllTimers();
     expect(ondelete).toHaveBeenCalled();
   });
 
@@ -100,6 +101,7 @@ describe('Test ListItem Component', () => {
     );
     tree.children[0].eventListeners.touchstart = touchstart;
     tree.children[0].eventListeners.touchstart();
+    jest.runAllTimers();
     expect(touchstart).toHaveBeenCalled();
     const touchend = jest.spyOn(tree.children[0].eventListeners, 'touchend');
     tree.children[0].eventListeners.touchend = touchend;
