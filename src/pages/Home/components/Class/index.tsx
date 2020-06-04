@@ -4,10 +4,13 @@
  */
 import { createElement, memo, useContext } from 'rax';
 import View from 'rax-view';
+import { isWeex } from 'universal-env';
 
 import ListItem from '../ListItem';
+import Add from '../../../../components/Add';
 import { Context } from '../../index';
 import { constants } from '../../../store';
+import { push } from '../../../../utils/tools';
 
 import './index.css';
 
@@ -20,6 +23,17 @@ const Class: Rax.FC = () => {
       type: constants.DELETE_CLASS_ITEM,
       data: id
     });
+  };
+
+  const switchRoute = () => {
+    push({
+      url: `/${isWeex ? 'weex' : 'web'}/detail${isWeex ? '?wh_weex=true' : ''}`,
+      animated: true
+    })
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -37,10 +51,7 @@ const Class: Rax.FC = () => {
           />
         ))
       ) : (
-        <View className="class-placeholder">
-          <View className="class-placeholder-row"></View>
-          <View className="class-placeholder-col"></View>
-        </View>
+        <Add onTouchEnd={switchRoute} />
       )}
     </View>
   );

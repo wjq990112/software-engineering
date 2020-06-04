@@ -8,6 +8,7 @@ import Text from 'rax-text';
 import { isWeex } from 'universal-env';
 
 import ListItem from '../ListItem';
+import Add from '../../../../components/Add';
 import { Context } from '../../index';
 import { constants } from '../../../store';
 import { push } from '../../../../utils/tools';
@@ -62,10 +63,7 @@ const List: Rax.FC = () => {
             );
           })
         ) : (
-          <View className="list-placeholder" onTouchEnd={switchRoute}>
-            <View className="list-placeholder-row"></View>
-            <View className="list-placeholder-col"></View>
-          </View>
+          <Add type="filled" onTouchEnd={switchRoute} />
         )}
       </View>
     </View>

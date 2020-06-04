@@ -7,11 +7,20 @@ import View from 'rax-view';
 import Text from 'rax-text';
 import TextInput from 'rax-textinput';
 
-const Input: Rax.FC = () => {
+import './index.css';
+
+interface IInputProps {
+  label: string;
+  placeholder?: string;
+}
+
+const Input: Rax.FC<IInputProps> = (props) => {
+  const { label, placeholder } = props;
+
   return (
-    <View>
-      <Text>Input</Text>
-      <TextInput />
+    <View className="input-wrapper">
+      <Text>{label}</Text>
+      <TextInput className="input" placeholder={placeholder} />
     </View>
   );
 };

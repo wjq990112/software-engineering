@@ -1,0 +1,19 @@
+/**
+ * @file 事件输入组件样式
+ * @author 炽翎
+ */
+.input-wrapper {
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 124rpx;
+  margin: 37.5rpx;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.input {
+  font-size: 48rpx;
+  height: 80rpx;
+  border-radius: 15px;
+  outline: none;
+}

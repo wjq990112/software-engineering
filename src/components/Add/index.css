@@ -1,0 +1,58 @@
+/**
+ * @file 加号样式
+ * @author 炽翎
+ */
+.outlined {
+  position: relative;
+  width: 300rpx;
+  height: 200rpx;
+  margin: 37.5rpx;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.outlined-row {
+  position: absolute;
+  top: 60;
+  left: 142.5;
+  width: 15rpx;
+  height: 80rpx;
+  background-color: #dcdcdc;
+}
+
+.outlined-col {
+  position: absolute;
+  top: 92.5;
+  left: 110;
+  width: 80rpx;
+  height: 15rpx;
+  background-color: #dcdcdc;
+}
+
+.filled {
+  position: absolute;
+  top: 12;
+  left: 287.5;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: #dcdcdc;
+}
+
+.filled-row {
+  position: absolute;
+  top: 20;
+  left: 45;
+  width: 10rpx;
+  height: 60rpx;
+  background-color: #ffffff;
+}
+
+.filled-col {
+  position: absolute;
+  top: 45;
+  left: 20;
+  width: 60rpx;
+  height: 10rpx;
+  background-color: #ffffff;
+}
