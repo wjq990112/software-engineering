@@ -61,11 +61,10 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       {
         transform: `translateX(${position}rpx)`
       },
-      { duration: 200, timingFunction: 'ease-in-out' },
-      () => {
-        setDeleting(!deleting);
-      }
+      { duration: 200, timingFunction: 'ease-in-out' }
     );
+    setTimeout;
+    setDeleting(!deleting);
   };
 
   const handleHorizontalPan = (e: PanEvent) => {
@@ -114,9 +113,12 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       {
         transform: 'translateX(900rpx)'
       },
-      { duration: 200, timingFunction: 'ease-in-out' },
-      () => {}
+      { duration: 200, timingFunction: 'ease-in-out' }
     );
+    const timer = setTimeout(() => {
+      setDeleting(!deleting);
+      clearTimeout(timer);
+    }, 200);
   };
 
   const handleDeleteBtnClick = (e: Rax.TouchEvent) => {

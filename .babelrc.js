@@ -21,6 +21,7 @@ module.exports = function (api) {
           pragma: 'createElement'
         }
       ]
+      // '@babel/preset-typescript'
     ],
     plugins: [
       '@babel/plugin-proposal-export-default-from',

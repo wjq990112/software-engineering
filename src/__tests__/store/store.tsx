@@ -1,8 +1,12 @@
 import { useReducer } from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { state as initState, reducer, constants } from './index';
-import { IState } from './state';
-import { IListItemProps } from '../Home/components/ListItem';
+import {
+  state as initState,
+  reducer,
+  constants
+} from '../../pages/store/index';
+import { IState } from '../../pages/store/state';
+import { IListItemProps } from '../../pages/Home/components/ListItem';
 
 const useTest = () => {
   const [state, dispatch] = useReducer(reducer, initState);

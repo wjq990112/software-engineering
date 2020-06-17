@@ -4,13 +4,15 @@
  */
 import { createElement } from 'rax';
 import renderer from 'rax-test-renderer';
-import ListItem, { IListItemProps } from './index';
+import ListItem, {
+  IListItemProps
+} from '../../pages/Home/components/ListItem/index';
 
 beforeAll(() => {
   jest.useFakeTimers();
 });
 
-describe('Test ListItem Component', () => {
+describe('Unit Test Of ListItem Component', () => {
   // Default
   it('Test Default ListItem', () => {
     const props: IListItemProps = {
@@ -50,12 +52,23 @@ describe('Test ListItem Component', () => {
 
     // 测试滑动
     const horizontalPan = jest.spyOn(tree.eventListeners, 'horizontalpan');
-    const event = {
+
+    const slidToLeft = {
       state: 'end',
       changedTouches: [{ deltaX: -150 }]
     };
-    tree.eventListeners.horizontalpan(event);
+    tree.eventListeners.horizontalpan(slidToLeft);
+    jest.runAllTimers();
     expect(horizontalPan).toHaveBeenCalled();
+
+    const slidToRight = {
+      state: 'end',
+      changedTouches: [{ deltaX: 150 }]
+    };
+    tree.eventListeners.horizontalpan(slidToRight);
+    jest.runAllTimers();
+    expect(horizontalPan).toHaveBeenCalled();
+
     expect(tree.children[0].children[1]).toBeDefined();
 
     // 测试删除

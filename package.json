@@ -37,6 +37,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.10.1",
     "@rax-types/rax": "^1.0.6",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react-hooks": "^3.2.1",
@@ -59,6 +60,7 @@
     "jest-environment-jsdom-fourteen": "^1.0.1",
     "rax-test-renderer": "^1.0.0",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-test-renderer": "^16.13.1",
     "typescript": "^3.7.5"
   },
