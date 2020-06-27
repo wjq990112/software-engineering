@@ -4,6 +4,8 @@
  */
 import { createElement, useEffect, createContext, useReducer } from 'rax';
 import ScrollView from 'rax-scrollview';
+import Modal from 'rax-modal';
+import Text from 'rax-text';
 
 import Class from './components/Class';
 import List from './components/List';
@@ -48,8 +50,7 @@ export default function Home() {
 
   const getClassList = () => {
     // TODO: 修改URL
-    const url: string =
-      'https://www.fastmock.site/mock/485fad210a6a599c24499885d8bbdba9/api/getClassList';
+    const url: string = '/getClass';
     GET({ url })
       .then((res: IClassListResponseData) => {
         if (res.code === 200) {
@@ -68,8 +69,7 @@ export default function Home() {
 
   const getMyList = () => {
     // TODO: 修改URL
-    const url: string =
-      'https://www.fastmock.site/mock/485fad210a6a599c24499885d8bbdba9/api/getMyList';
+    const url: string = '/getList';
     GET({ url })
       .then((res: IMyListResponseData) => {
         if (res.code === 200) {
@@ -86,6 +86,12 @@ export default function Home() {
       });
   };
 
+  const changeModalVisible = () => {
+    dispatch({
+      type: constants.CHANGE_MODAL_VISIBLE
+    });
+  };
+
   useEffect(() => {
     getClassList();
     getMyList();
@@ -96,6 +102,9 @@ export default function Home() {
       <Context.Provider value={{ state, dispatch }}>
         <Class />
         <List />
+        <Modal visible={state.modalVisible} onHide={changeModalVisible}>
+          <Text>test</Text>
+        </Modal>
       </Context.Provider>
     </ScrollView>
   );

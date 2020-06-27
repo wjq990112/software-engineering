@@ -39,32 +39,35 @@ const List: Rax.FC = () => {
       });
   };
 
+  const changeModalVisible = () => {
+    dispatch({
+      type: constants.CHANGE_MODAL_VISIBLE
+    });
+  };
+
   return (
     <View className="list">
       <Text className="list-title">我的列表</Text>
       <View className="list-wrapper">
-        {myList.length ? (
-          myList.map((item, index) => {
-            const hasBorder = index < hasBorderSum;
-            const style = hasBorder && {
+        {myList.map((item) => (
+          <ListItem
+            key={item.id}
+            id={item.id}
+            color={item.color}
+            style={{
               borderBottomWidth: '1px',
               borderBottomColor: '#dcdcdc'
-            };
-            return (
-              <ListItem
-                key={item.id}
-                id={item.id}
-                style={style}
-                iconUrl={item.iconUrl}
-                title={item.title}
-                itemSum={item.itemSum}
-                onDelete={onItemDelete}
-              />
-            );
-          })
-        ) : (
-          <Add type="filled" onTouchEnd={switchRoute} />
-        )}
+            }}
+            iconUrl={item.iconUrl}
+            title={item.title}
+            itemSum={item.itemSum}
+            onDelete={onItemDelete}
+            onTouchEnd={switchRoute}
+          />
+        ))}
+        <View className="list-item">
+          <Add type="filled" onTouchEnd={changeModalVisible} />
+        </View>
       </View>
     </View>
   );

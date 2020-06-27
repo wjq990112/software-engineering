@@ -6,3 +6,11 @@
   min-height: 100vh;
   background-color: #efeef5;
 }
+
+.list-wrapper {
+  overflow: hidden;
+  min-height: 124rpx;
+  margin: 37.5rpx;
+  border-radius: 15px;
+  background-color: #ffffff;
+}

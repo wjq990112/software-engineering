@@ -26,6 +26,7 @@ export interface IListItemProps {
   style?: Rax.CSSProperties;
   type?: ListItemType;
   id: number;
+  color: string;
   iconUrl: string;
   title: string;
   itemSum: number;
@@ -45,6 +46,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     style,
     type,
     id,
+    color,
     iconUrl,
     title,
     itemSum,
@@ -63,8 +65,10 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       },
       { duration: 200, timingFunction: 'ease-in-out' }
     );
-    setTimeout;
-    setDeleting(!deleting);
+    const timer = setTimeout(() => {
+      setDeleting(!deleting);
+      clearTimeout(timer);
+    }, 200);
   };
 
   const handleHorizontalPan = (e: PanEvent) => {
@@ -183,6 +187,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
               uri: iconUrl
             }}
             className={listItemIconClass}
+            style={{
+              backgroundColor: color
+            }}
           />
           <Text className={listItemTitleClass}>{title}</Text>
           <Text className={listItemItemSumClass}>{itemSum}</Text>

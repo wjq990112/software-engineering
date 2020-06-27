@@ -1,0 +1,54 @@
+/**
+ * @file 列表项组件样式
+ * @author 炽翎
+ */
+.list-item {
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 675rpx;
+  height: 124rpx;
+  padding: 12rpx 37.5rpx;
+}
+
+.list-item-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto 10rpx;
+  border-radius: 20rpx;
+  border-color: #00b4ff;
+  border-width: 1px;
+}
+
+.list-item-icon-checked {
+  background-color: #00b4ff;
+}
+
+.list-item-title {
+  position: absolute;
+  top: 38;
+  left: 100;
+  color: #333333;
+  font-size: 36rpx;
+  line-height: 48rpx;
+}
+
+.list-item-title-completed {
+  text-decoration: line-through;
+}
+
+.list-item-deleting {
+  width: 150rpx;
+  height: 124rpx;
+  background-color: #f2464b;
+}
+
+.list-item-deleting-content {
+  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 124rpx;
+  width: auto;
+  text-align: center;
+}

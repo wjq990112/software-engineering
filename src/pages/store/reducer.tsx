@@ -32,6 +32,10 @@ const reducer = (state: IState, action: IAction) => {
       const newState: IState = { ...state, myList: newMyList };
       return newState;
     }
+    case constants.CHANGE_MODAL_VISIBLE: {
+      const newState: IState = { ...state, modalVisible: !state.modalVisible };
+      return newState;
+    }
     default:
       return state;
   }

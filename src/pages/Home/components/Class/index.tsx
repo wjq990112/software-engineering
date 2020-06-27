@@ -10,7 +10,9 @@ import ListItem from '../ListItem';
 import Add from '../../../../components/Add';
 import { Context } from '../../index';
 import { constants } from '../../../store';
+import { POST } from '../../../../utils/request';
 import { push } from '../../../../utils/tools';
+import { AsObject } from 'universal-request/lib/types';
 
 import './index.css';
 
@@ -23,6 +25,17 @@ const Class: Rax.FC = () => {
       type: constants.DELETE_CLASS_ITEM,
       data: id
     });
+    const url: string = '/deleteClass';
+    const params: AsObject = {
+      id
+    };
+    POST({ url, params })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const switchRoute = () => {
@@ -36,23 +49,28 @@ const Class: Rax.FC = () => {
       });
   };
 
+  const changeModalVisible = () => {
+    dispatch({
+      type: constants.CHANGE_MODAL_VISIBLE
+    });
+  };
+
   return (
     <View className="class">
-      {classList.length ? (
-        classList.map((item) => (
-          <ListItem
-            key={item.id}
-            type="box"
-            id={item.id}
-            iconUrl={item.iconUrl}
-            title={item.title}
-            itemSum={item.itemSum}
-            onDelete={onItemDelete}
-          />
-        ))
-      ) : (
-        <Add onTouchEnd={switchRoute} />
-      )}
+      {classList.map((item) => (
+        <ListItem
+          key={item.id}
+          type="box"
+          id={item.id}
+          color={item.color}
+          iconUrl={item.iconUrl}
+          title={item.title}
+          itemSum={item.itemSum}
+          onDelete={onItemDelete}
+          onTouchEnd={switchRoute}
+        />
+      ))}
+      <Add onTouchEnd={changeModalVisible} />
     </View>
   );
 };

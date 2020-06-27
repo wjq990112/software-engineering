@@ -2,6 +2,14 @@
  * @file 事件输入组件样式
  * @author 炽翎
  */
+.label {
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+  width: auto;
+  text-align: center;
+}
+
 .input-wrapper {
   justify-content: center;
   align-items: flex-start;
