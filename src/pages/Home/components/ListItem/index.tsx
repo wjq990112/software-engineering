@@ -11,6 +11,7 @@ import GestureView from 'rax-gesture-view';
 import findDOMNode from 'rax-find-dom-node';
 import transition from 'universal-transition';
 import { isWeex } from 'universal-env';
+import { push } from '../../../../utils/tools';
 
 import './index.css';
 import { PanEvent } from 'rax-gesture-view/lib/types';
@@ -81,6 +82,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     } else {
       if (type === 'default' && state === 'end') {
         const deltaX = changedTouches[0].deltaX;
+        if (deltaX > -10 && deltaX < 10 && changedTouches[0].clientX < 281.25) {
+          switchRoute(id);
+        }
         // 判断左右划动
         if (!deleting && deltaX < 0) {
           swipe();
@@ -108,6 +112,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     onTouchEnd(e);
     clearTimeout(timer);
     setIsFocus(false);
+    if (type === 'box') {
+      switchRoute(id);
+    }
   };
 
   const remove = () => {
@@ -131,6 +138,19 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       onDelete(id);
       clearTimeout(timer);
     }, 200);
+  };
+
+  const switchRoute = (id: number) => {
+    push({
+      url: `/${isWeex ? 'weex' : 'web'}/detail?${
+        isWeex ? 'wh_weex=true' : `type=${type}&index=${id}`
+      }`,
+      animated: true
+    })
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // 处理样式

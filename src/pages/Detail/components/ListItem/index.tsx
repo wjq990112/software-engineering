@@ -56,7 +56,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
         swipe();
       } else {
         const deltaX = changedTouches[0].deltaX;
-        if (deltaX > -10 && deltaX < 10) {
+        if (deltaX > -10 && deltaX < 10 && changedTouches[0].clientX < 281.25) {
           setChecked(!checked);
         }
         // 判断左右划动

@@ -4,14 +4,12 @@
  */
 import { createElement, memo, useContext } from 'rax';
 import View from 'rax-view';
-import { isWeex } from 'universal-env';
 
 import ListItem from '../ListItem';
 import Add from '../../../../components/Add';
 import { Context } from '../../index';
 import { constants } from '../../../store';
 import { POST } from '../../../../utils/request';
-import { push } from '../../../../utils/tools';
 import { AsObject } from 'universal-request/lib/types';
 
 import './index.css';
@@ -38,17 +36,6 @@ const Class: Rax.FC = () => {
       });
   };
 
-  const switchRoute = () => {
-    push({
-      url: `/${isWeex ? 'weex' : 'web'}/detail${isWeex ? '?wh_weex=true' : ''}`,
-      animated: true
-    })
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const changeModalVisible = () => {
     dispatch({
       type: constants.CHANGE_MODAL_VISIBLE
@@ -67,7 +54,6 @@ const Class: Rax.FC = () => {
           title={item.title}
           itemSum={item.itemSum}
           onDelete={onItemDelete}
-          onTouchEnd={switchRoute}
         />
       ))}
       <Add onTouchEnd={changeModalVisible} />
