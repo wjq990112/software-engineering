@@ -3,8 +3,14 @@
     [
       "build-plugin-rax-app",
       {
-        "targets": ["web", "weex"],
-        "type": "mpa"
+        "targets": ["web", "weex","miniapp","wechat-miniprogram"],
+        "type": "mpa",
+        "miniapp": {
+          "buildType": "runtime"
+        },
+        "wechat-miniprogram": {
+          "buildType": "runtime"
+        }
       }
     ]
   ],
