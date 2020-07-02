@@ -69,7 +69,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     const timer = setTimeout(() => {
       setDeleting(!deleting);
       clearTimeout(timer);
-    }, 200);
+    }, 300);
   };
 
   const handleHorizontalPan = (e: PanEvent) => {
@@ -82,7 +82,7 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     } else {
       if (type === 'default' && state === 'end') {
         const deltaX = changedTouches[0].deltaX;
-        if (deltaX > -10 && deltaX < 10 && changedTouches[0].clientX < 281.25) {
+        if (deltaX > -10 && deltaX < 10) {
           switchRoute(id);
         }
         // 判断左右划动
@@ -102,7 +102,9 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
       const timer = setTimeout(() => {
         setDeleting(!deleting);
         setIsFocus(false);
-      }, 500);
+        clearTimeout(timer);
+        setTimer(null);
+      }, 300);
       setTimer(timer);
     }
     setIsFocus(true);
@@ -110,9 +112,8 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
 
   const handleBoxTouchEnd = (e: Rax.TouchEvent) => {
     onTouchEnd(e);
-    clearTimeout(timer);
     setIsFocus(false);
-    if (type === 'box') {
+    if (type === 'box' && timer) {
       switchRoute(id);
     }
   };
@@ -129,15 +130,16 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     const timer = setTimeout(() => {
       setDeleting(!deleting);
       clearTimeout(timer);
-    }, 200);
+    }, 300);
   };
 
   const handleDeleteBtnClick = (e: Rax.TouchEvent) => {
+    e.stopPropagation();
     remove();
     const timer = setTimeout(() => {
       onDelete(id);
       clearTimeout(timer);
-    }, 200);
+    }, 300);
   };
 
   const switchRoute = (id: number) => {

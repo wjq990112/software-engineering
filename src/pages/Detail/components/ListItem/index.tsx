@@ -2,7 +2,7 @@
  * @file 列表项组件
  * @author 炽翎
  */
-import { createElement, memo, useRef, useState } from 'rax';
+import { createElement, memo, useRef, useState, useEffect } from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import GestureView from 'rax-gesture-view';
@@ -21,6 +21,7 @@ export interface IListItemProps {
   style?: Rax.CSSProperties;
   id: number;
   title: string;
+  completed: boolean;
   onTouchStart?: (e: Rax.TouchEvent) => void;
   onTouchEnd?: (e: Rax.TouchEvent) => void;
   onDelete?: (id: number) => void;
@@ -32,7 +33,15 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
   const [deleting, setDeleting] = useState(false);
   const [checked, setChecked] = useState(false);
 
-  const { style, id, title, onTouchStart, onTouchEnd, onDelete } = props;
+  const {
+    style,
+    id,
+    title,
+    completed,
+    onTouchStart,
+    onTouchEnd,
+    onDelete
+  } = props;
 
   const swipe = () => {
     const position = deleting ? 0 : -150;
@@ -70,13 +79,13 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     }
   };
 
-  const handleItemTouchStart = (e: Rax.TouchEvent) => {
-    onTouchStart(e);
-  };
+  // const handleItemTouchStart = (e: Rax.TouchEvent) => {
+  //   onTouchStart(e);
+  // };
 
-  const handleItemTouchEnd = (e: Rax.TouchEvent) => {
-    onTouchEnd(e);
-  };
+  // const handleItemTouchEnd = (e: Rax.TouchEvent) => {
+  //   onTouchEnd(e);
+  // };
 
   const remove = () => {
     const element = findDOMNode(ref.current);
@@ -101,6 +110,10 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
     }, 200);
   };
 
+  useEffect(() => {
+    setChecked(completed);
+  }, []);
+
   const listItemIconClass = classnames('list-item-icon', {
     'list-item-icon-checked': checked
   });
@@ -117,8 +130,8 @@ const ListItem: Rax.FC<IListItemProps> = (props) => {
           width: '925rpx',
           ...style
         }}
-        onTouchStart={handleItemTouchStart}
-        onTouchEnd={handleItemTouchEnd}
+        // onTouchStart={handleItemTouchStart}
+        // onTouchEnd={handleItemTouchEnd}
       >
         <View className="list-item">
           <View className={listItemIconClass}></View>

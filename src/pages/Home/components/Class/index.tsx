@@ -9,7 +9,7 @@ import ListItem from '../ListItem';
 import Add from '../../../../components/Add';
 import { Context } from '../../index';
 import { constants } from '../../../store';
-import { POST } from '../../../../utils/request';
+import { GET } from '../../../../utils/request';
 import { AsObject } from 'universal-request/lib/types';
 
 import './index.css';
@@ -27,7 +27,7 @@ const Class: Rax.FC = () => {
     const params: AsObject = {
       id
     };
-    POST({ url, params })
+    GET({ url, params })
       .then((res) => {
         console.log(res);
       })

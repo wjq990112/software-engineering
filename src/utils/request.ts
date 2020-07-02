@@ -17,6 +17,7 @@ export const GET = async <T extends AsObject>({
   try {
     const res: ResponseData = await request({
       method: 'GET',
+      headers: { withCredentials: 'true', 'Content-Type': 'application/json' },
       url,
       data: params
     });
@@ -40,6 +41,7 @@ export const POST = async <T extends AsObject>({
   try {
     const res: ResponseData = await request({
       method: 'POST',
+      headers: { withCredentials: 'true', 'Content-Type': 'application/json' },
       url,
       data: params,
       dataType

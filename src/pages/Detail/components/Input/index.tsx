@@ -12,16 +12,21 @@ import './index.css';
 interface IInputProps {
   label: string;
   placeholder?: string;
+  onChange: (str: string) => void;
 }
 
 const Input: Rax.FC<IInputProps> = (props) => {
-  const { label, placeholder } = props;
+  const { label, placeholder, onChange } = props;
 
   return (
     <View>
       <Text className="label">{label}</Text>
       <View className="input-wrapper">
-        <TextInput className="input" placeholder={placeholder} />
+        <TextInput
+          className="input"
+          placeholder={placeholder}
+          onChangeText={(text: string) => onChange(text)}
+        />
       </View>
     </View>
   );

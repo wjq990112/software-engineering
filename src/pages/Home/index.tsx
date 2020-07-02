@@ -49,7 +49,6 @@ export default function Home() {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const getClassList = () => {
-    // TODO: 修改URL
     const url: string = '/getClass';
     GET({ url })
       .then((res: IClassListResponseData) => {
@@ -68,7 +67,6 @@ export default function Home() {
   };
 
   const getMyList = () => {
-    // TODO: 修改URL
     const url: string = '/getList';
     GET({ url })
       .then((res: IMyListResponseData) => {
